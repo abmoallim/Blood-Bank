@@ -18,7 +18,7 @@ o	Donate Blood
 •	Blood Types – CRUD 
 •	Donors – CRUD – Mobile
 o	Donor register self - Mobile
-o	Donors List per State
+o	Donors List per sumayo
 
 ####	Beneficiaries – CRUD - Mobile
 o	Receipt Blood

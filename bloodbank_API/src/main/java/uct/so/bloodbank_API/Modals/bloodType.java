@@ -11,20 +11,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @AllArgsConstructor
 @NoArgsConstructor
 @CrossOrigin
-@Table(name = "tb_users")
-public class users {
+@Table(name = "tb_bloodType")
+
+public class bloodType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
-    private String email;
-    private String userName;
-    private String password;
-    private String status;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name="role_id", referencedColumnName = "id")
-    roles role;
+    @Column(name = "bloodName")
+    private String bloodName;
 
 
 }

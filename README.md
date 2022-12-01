@@ -18,7 +18,7 @@ o	Donate Blood
 •	Blood Types – CRUD 
 •	Donors – CRUD – Mobile
 o	Donor register self - Mobile
-o	Donors List per sumayo
+o	Donors List per state
 
 ####	Beneficiaries – CRUD - Mobile
 o	Receipt Blood
@@ -48,3 +48,7 @@ o	Reports in charts
 1.Abdihamid Moallim
 2.Abdullahi 
 3.Bosteya Elmi
+
+## Sources
+-- bootstap icons link 
+https://icons.getbootstrap.com/

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -15,11 +17,21 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 public class bloodType {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "bloodName")
     private String bloodName;
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @OneToMany(mappedBy = "bloodType",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<donors> donors;
+
+    @OneToMany(mappedBy = "bloodType",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<recipients> recipients;
 
 
 }

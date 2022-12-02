@@ -6,31 +6,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "tb_states")
 @CrossOrigin
-@Table(name = "tb_users")
-public class users {
+public class states {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    private String email;
-    private String userName;
-    private String password;
-    private String status;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name="role_id", referencedColumnName = "id")
-    roles role;
+    private String stateName;
 
-    @OneToOne(mappedBy = "user")
-    private donors donor;
+    @OneToMany(mappedBy = "state",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<donors> donors;
 
-    @OneToOne(mappedBy = "user")
-    private recipients recipient;
-
-
+    @OneToMany(mappedBy = "state",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<recipients> recipients;
 }

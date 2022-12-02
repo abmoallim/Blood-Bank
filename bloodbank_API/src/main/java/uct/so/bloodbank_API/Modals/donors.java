@@ -41,6 +41,10 @@ public class donors {
             cascade = CascadeType.ALL)
     private List<donations> donationsList;
 
+    @OneToMany(mappedBy = "donor",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<testResults> testResults;
+
 
 
 }

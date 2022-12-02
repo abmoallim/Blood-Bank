@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Table(name = "tb_donations")
-@CrossOrigin
+
 public class donations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

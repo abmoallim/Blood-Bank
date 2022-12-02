@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_donors")
-@CrossOrigin
+
 public class donors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

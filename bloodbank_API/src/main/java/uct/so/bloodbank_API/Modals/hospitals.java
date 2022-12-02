@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tb_hospital")
-@CrossOrigin
+
 public class hospitals {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@CrossOrigin
+
 @Table(name = "tb_records")
 
 public class records {

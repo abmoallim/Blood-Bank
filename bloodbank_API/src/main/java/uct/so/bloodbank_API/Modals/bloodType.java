@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@CrossOrigin
+
 @Table(name = "tb_bloodType")
 
 public class bloodType {

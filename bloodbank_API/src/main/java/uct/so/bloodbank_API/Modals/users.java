@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@CrossOrigin
 @Table(name = "tb_users")
 public class users {
     @Id

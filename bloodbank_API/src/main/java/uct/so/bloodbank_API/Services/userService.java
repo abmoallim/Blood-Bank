@@ -2,28 +2,28 @@ package uct.so.bloodbank_API.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uct.so.bloodbank_API.Modals.roles;
-import uct.so.bloodbank_API.Repositories.roleRepo;
+import uct.so.bloodbank_API.Modals.users;
+import uct.so.bloodbank_API.Repositories.usersRepo;
+
 
 import java.util.List;
 
 @Service
-public class roleService {
+public class userService {
     @Autowired
-    roleRepo _Repo;
+    usersRepo _Repo;
 
-    public List<roles> getRolesList(){
+    public List<users> getList(){
         return _Repo.findAll();
     }
-    public roles getRoleById(Long id){
+    public users getById(Long id){
         return _Repo.findById(id).get();
     }
-    public roles addNewRole(roles role){
-        return _Repo.save(role);
+    public users addNew(users user){
+        return _Repo.save(user);
     }
     public void deleteRole(Long id){
         _Repo.deleteById(id);
     }
-
 
 }

@@ -12,26 +12,21 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "tb_states")
 
-@Table(name = "tb_bloodType")
-
-public class bloodType {
+public class states {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "bloodName")
-    private String bloodName;
-    @Column(name = "quantity")
-    private Integer quantity;
 
-    @OneToMany(mappedBy = "bloodType",fetch = FetchType.LAZY,
+    private String stateName;
+
+    @OneToMany(mappedBy = "state",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<donors> donors;
 
-    @OneToMany(mappedBy = "bloodType",fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "state",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<recipients> recipients;
-
-
 }

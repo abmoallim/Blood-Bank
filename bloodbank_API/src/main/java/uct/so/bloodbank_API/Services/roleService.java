@@ -10,19 +10,19 @@ import java.util.List;
 @Service
 public class roleService {
     @Autowired
-    roleRepo _Repo;
+    roleRepo _rolesRepo;
 
     public List<roles> getRolesList(){
-        return _Repo.findAll();
+        return _rolesRepo.findAll();
     }
     public roles getRoleById(Long id){
-        return _Repo.findById(id).get();
+        return _rolesRepo.findById(id).get();
     }
     public roles addNewRole(roles role){
-        return _Repo.save(role);
+        return _rolesRepo.save(role);
     }
     public void deleteRole(Long id){
-        _Repo.deleteById(id);
+        _rolesRepo.deleteById(id);
     }
 
 

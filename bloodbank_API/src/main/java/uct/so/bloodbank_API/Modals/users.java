@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
 @Data
@@ -23,7 +22,7 @@ public class users {
 
     @ManyToOne(optional = false)
     @JoinColumn(name="role_id", referencedColumnName = "id")
-    roles role;
+    private roles role;
 
     @OneToOne(mappedBy = "user")
     private donors donor;

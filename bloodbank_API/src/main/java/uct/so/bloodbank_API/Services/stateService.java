@@ -23,7 +23,7 @@ public class stateService {
     public states addNew(states state){
         return _Repo.save(state);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
 }

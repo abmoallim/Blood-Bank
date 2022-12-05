@@ -1,5 +1,6 @@
 package uct.so.bloodbank_API.Modals;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +39,7 @@ public class recipients {
 
     @OneToMany(mappedBy = "recipient",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<records> recordsList;
 
 

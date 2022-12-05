@@ -22,7 +22,7 @@ public class donationService {
     public donations addNew(donations donation){
         return _Repo.save(donation);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
 }

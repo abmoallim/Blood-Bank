@@ -1,5 +1,6 @@
 package uct.so.bloodbank_API.Modals;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,17 +32,18 @@ public class donors {
     @ManyToOne(optional = false)
     @JoinColumn(name="state_id", referencedColumnName = "id")
     states state;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private users user;
 
     @OneToMany(mappedBy = "donor",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<donations> donationsList;
 
-    @OneToMany(mappedBy = "donor",fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "donors",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<testResults> testResults;
 
 

@@ -1,5 +1,6 @@
 package uct.so.bloodbank_API.Modals;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class roles {
     private String role_name;
 
     @OneToMany(mappedBy = "role",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<users> users;
 
 

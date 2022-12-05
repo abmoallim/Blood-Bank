@@ -1,5 +1,6 @@
 package uct.so.bloodbank_API.Modals;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,11 +27,18 @@ public class hospitals {
 
     @OneToMany(mappedBy = "hospital",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<donations> donationsList;
 
     @OneToMany(mappedBy = "hospital",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<records> recordsList;
+
+    @OneToMany(mappedBy = "hospital",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<testResults> testResults;
 
 
 

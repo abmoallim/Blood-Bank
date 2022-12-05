@@ -1,12 +1,11 @@
 package uct.so.bloodbank_API.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import uct.so.bloodbank_API.Modals.bloodType;
 import uct.so.bloodbank_API.Modals.donors;
 import uct.so.bloodbank_API.Repositories.donorsRepo;
+import uct.so.bloodbank_API.Services.bloodTypeService;
 import uct.so.bloodbank_API.Services.donorService;
 
 import java.util.List;
@@ -16,11 +15,24 @@ import java.util.List;
 @RequestMapping("/api/donors")
 public class donorsController {
     @Autowired
-    donorsRepo _Repo;
+    donorService _DonorSer;
 
     @GetMapping("/")
     public List<donors> getAllDonors(){
-        return _Repo.findAll();
+        return _DonorSer.getList();
+    }
+    @GetMapping("/{id}")
+    public donors getByID(@PathVariable Long id){
+        return  _DonorSer.getById(id);
+    }
+    @PostMapping("/")
+    public donors AddNew(@RequestBody donors donor){
+        return _DonorSer.addNew(donor);
+    }
+
+    @DeleteMapping("/{id}")
+    public void  deleteByID(@PathVariable Long id){
+        _DonorSer.deleteBy(id);
     }
 
 }

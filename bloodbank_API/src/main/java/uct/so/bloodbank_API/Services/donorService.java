@@ -23,7 +23,7 @@ public class donorService {
     public donors addNew(donors donor){
         return _Repo.save(donor);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
 }

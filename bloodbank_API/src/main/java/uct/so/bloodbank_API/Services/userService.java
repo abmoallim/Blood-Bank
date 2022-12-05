@@ -22,7 +22,7 @@ public class userService {
     public users addNew(users user){
         return _userRepo.save(user);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _userRepo.deleteById(id);
     }
 

@@ -22,7 +22,7 @@ public class bloodTypeService {
     public bloodType addNew(bloodType bloodTypes){
         return _Repo.save(bloodTypes);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
 }

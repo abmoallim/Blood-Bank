@@ -38,24 +38,7 @@
 
 <main class="main-wrapper">
     <!-- ========== header start ========== -->
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-6">
-                    <div class="header-left d-flex align-items-center">
-                       
-                        <div class="header-search d-none d-md-flex">
-                            <form action="#">
-                                <input type="text" placeholder="Search..." />
-                                <button><i class="lni lni-search-alt"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </header>
+    
     <!-- ========== header end ========== -->
 
     <!-- ========== section start ========== -->
@@ -69,8 +52,13 @@
                             create
                         </button>
                     </div>
+                    <div class="col-3 mt-3 ms-auto">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" id="Search" placeholder="Search" aria-label="Search">
+                        </form>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title py-3">DonationsTable</h5>
+                        <h5 class="card-title py-3">UserTable</h5>
                         <div class="col-md-12 my-2">
                             <!-- Button trigger modal -->
                             <div class="col-md-12">
@@ -79,8 +67,10 @@
                                         <thead>
                                             <tr>
                                                 <th> <h6>#</h6> </th>
-                                                <th><h6>Donor</h6></th>
-                                                <th><h6>Hospitals</h6></th>
+                                                <th><h6>Email</h6></th>
+                                                <th><h6>userName</h6></th>
+                                                <th><h6>password</h6></th>
+                                                <th><h6>Status</h6></th>
                                                 
 
 
@@ -89,7 +79,7 @@
                                             </tr>
                                             <!-- end table row-->
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody id="USERdata"></tbody>
                                     </table>
                                     <!-- end table -->
                                 </div>
@@ -101,30 +91,48 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                DonationsTable
+                                                UserTable
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="Donor">
+                                            <form id="Userdata">
                                                 <div class="row g-3 align-items-center">
 
                                                     <div class="col-12">
-                                                        <label for="inputdonor_id" class="col-form-label">Donor</label>
-                                                        <select name="" id="donor_id" required class="form-select">
-                                                            <option value="" disabled selected>Choose option</option>
-                                                        </select>
+                                                        <label for="input"
+                                                            class="col-form-label">Email</label>
+                                                        <input type="text" id="email" class="form-control" />
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <label for="inputhospital_id" class="col-form-label">Hospitals</label>
-                                                        <select name="" id="hospital_id" required class="form-select">
+                                                        <label for="inputusername"
+                                                            class="col-form-label">userName</label>
+                                                        <input type="text" id="userName" class="form-control" />
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <label for="input"
+                                                            class="col-form-label">password</label>
+                                                        <input type="text" id="password" class="form-control" />
+                                                    </div>
+                                                    
+                                                    <div class="col-12">
+                                                        <label for="Address"
+                                                            class="col-form-label">Status</label>
+                                                        <input type="text" id="Status" class="form-control" />
+                                                    </div>
+                                                     
+                                                    <div class="col-12">
+                                                        <label for="inputuser_id" class="col-form-label">Role</label>
+                                                        <select name="" id="Role_id" required class="form-select">
                                                             <option value="" disabled selected>Choose option</option>
                                                         </select>
                                                     </div>
-                                                    
 
+
+                                                    
                                                     <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">
@@ -147,7 +155,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="">
-                                                Donor Table
+                                                User Table
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -156,24 +164,32 @@
                                             <form id="hospotalForm_">
                                                 <input type="text" hidden id="id">
                                                 <div class="row g-3 align-items-center">
-                                                    
-                                                    
-                                                    
                                                    
                                                     <div class="col-12">
                                                         <label for="input"
-                                                            class="col-form-label">donor</label>
-                                                        <input type="text" id="donor_id" class="form-control" />
+                                                            class="col-form-label">Email</label>
+                                                        <input type="text" id="email" class="form-control" />
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <label for="inputusername"
+                                                            class="col-form-label">userName</label>
+                                                        <input type="text" id="userName" class="form-control" />
                                                     </div>
 
                                                     <div class="col-12">
                                                         <label for="input"
-                                                            class="col-form-label">hospital_id</label>
-                                                        <input type="text" id="hospital_id" class="form-control" />
+                                                            class="col-form-label">password</label>
+                                                        <input type="text" id="password" class="form-control" />
+                                                    </div>
+                                                    
+                                                    <div class="col-12">
+                                                        <label for="Address"
+                                                            class="col-form-label">Status</label>
+                                                        <input type="text" id="Status" class="form-control" />
                                                     </div>
 
-                                                </div>
-
+                                                    
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">
@@ -220,6 +236,8 @@
     </div>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="./js/js.js"></script>
+    <script src="./Helper/Helper.js"></script>
     
 <!-- Need: Apexcharts -->
 <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>

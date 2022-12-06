@@ -1,11 +1,9 @@
 package uct.so.bloodbank_API.Controllers;
 
+import DTO.DoonerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uct.so.bloodbank_API.Modals.bloodType;
 import uct.so.bloodbank_API.Modals.donors;
-import uct.so.bloodbank_API.Repositories.donorsRepo;
-import uct.so.bloodbank_API.Services.bloodTypeService;
 import uct.so.bloodbank_API.Services.donorService;
 
 import java.util.List;
@@ -18,8 +16,8 @@ public class donorsController {
     donorService _DonorSer;
 
     @GetMapping("/")
-    public List<donors> getAllDonors(){
-        return _DonorSer.getList();
+    public List<DoonerDto> getAllDonors(){
+        return _DonorSer.getAllDoners();
     }
     @GetMapping("/{id}")
     public donors getByID(@PathVariable Long id){

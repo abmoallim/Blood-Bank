@@ -2,7 +2,6 @@ package uct.so.bloodbank_API.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uct.so.bloodbank_API.Modals.bloodType;
 import uct.so.bloodbank_API.Modals.roles;
 
 import uct.so.bloodbank_API.Services.roleService;

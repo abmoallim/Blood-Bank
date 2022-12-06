@@ -1,5 +1,6 @@
 package uct.so.bloodbank_API.Controllers;
 
+import DTO.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uct.so.bloodbank_API.Modals.users;
@@ -14,8 +15,8 @@ public class usersController {
     @Autowired
     userService _userRe;
     @GetMapping("/")
-    public List<users> getAllUsers(){
-        return _userRe.getAllUsers();
+    public List<UserDTO> getAllUsers(){
+        return _userRe.getAllUserDTO();
     }
     @PostMapping("/")
     public users save(@RequestBody users user){

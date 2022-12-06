@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import uct.so.bloodbank_API.Modals.bloodType;
 import uct.so.bloodbank_API.Services.bloodTypeService;
 
-import java.awt.color.ICC_ProfileRGB;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/blood")
 public class bloodTypeController {
     @Autowired

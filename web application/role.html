@@ -23,9 +23,7 @@
 </head>
 
 </head>
-
-<body>
-    <div id="sidebarme"></div>
+<div id="sidebarme"></div>
     
         <div id="main">
             <header class="mb-3">
@@ -33,29 +31,15 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
+<body>
+    
             
 
 
 <main class="main-wrapper">
     <!-- ========== header start ========== -->
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-6">
-                    <div class="header-left d-flex align-items-center">
-                       
-                        <div class="header-search d-none d-md-flex">
-                            <form action="#">
-                                <input type="text" placeholder="Search..." />
-                                <button><i class="lni lni-search-alt"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </header>
+   
     <!-- ========== header end ========== -->
 
     <!-- ========== section start ========== -->
@@ -63,74 +47,82 @@
         <div class="container">
             <div class="title-wrapper pt-30">
                 <div class="card w-100">
+                    
                     <div class="card-header bg-white text-left">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             create
                         </button>
+
+                        <div class="col-3 mt-3 ms-auto">
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" id="Search" placeholder="Search" aria-label="Search">
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title py-3">DonationsTable</h5>
+                        <h5 class="card-title py-3">BloodType</h5>
                         <div class="col-md-12 my-2">
                             <!-- Button trigger modal -->
                             <div class="col-md-12">
                                 <div class="table-wrapper table-responsive">
-                                    <table class="table" id="DonorTable">
+                                    <table class="table" id="BloodType">
                                         <thead>
                                             <tr>
                                                 <th> <h6>#</h6> </th>
-                                                <th><h6>Donor</h6></th>
-                                                <th><h6>Hospitals</h6></th>
-                                                
+                                                <th><h6>BloodType</h6></th>
+                                                <th><h6>Quantity</h6></th>
 
+                                                
 
 
                                               
                                             </tr>
                                             <!-- end table row-->
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody id="DataBloodTypeTable">
+
+                                        </tbody>
                                     </table>
                                     <!-- end table -->
                                 </div>
                             </div>
                             <!-- Create Modal -->
-                              <div class="modal fade" id="exampleModal" tabindex="-1"
+                              <div class="modal nadar" id="exampleModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                DonationsTable
+                                                DonorTable
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="Donor">
+                                            <form id="bloodtype" >
                                                 <div class="row g-3 align-items-center">
 
                                                     <div class="col-12">
-                                                        <label for="inputdonor_id" class="col-form-label">Donor</label>
-                                                        <select name="" id="donor_id" required class="form-select">
-                                                            <option value="" disabled selected>Choose option</option>
-                                                        </select>
+                                                        <label for="input"
+                                                            class="col-form-label">BloodType</label>
+                                                        <input type="text" id="BloodType" class="form-control" />
                                                     </div>
-
                                                     <div class="col-12">
-                                                        <label for="inputhospital_id" class="col-form-label">Hospitals</label>
-                                                        <select name="" id="hospital_id" required class="form-select">
-                                                            <option value="" disabled selected>Choose option</option>
-                                                        </select>
+                                                        <label for="input"
+                                                            class="col-form-label">BloodType</label>
+                                                        <input type="text" id="quantity	" class="form-control" />
                                                     </div>
-                                                    
+                                                   
+
+
 
                                                     <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">
                                                         Close
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">
+                                                    <button type="submit" class="btn btn-primary" >
                                                         Applay Changes
                                                     </button>
                                                 </div>
@@ -139,9 +131,12 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <!-- Update -->
 
-                            <div class="modal fade" id="modal_modal" tabindex="-1" aria-labelledby="modal_modal"
+                            <!-- <div class="modal nadar" id="modal_modal" tabindex="-1" aria-labelledby="modal_modal"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -156,23 +151,18 @@
                                             <form id="hospotalForm_">
                                                 <input type="text" hidden id="id">
                                                 <div class="row g-3 align-items-center">
-                                                    
-                                                    
-                                                    
                                                    
                                                     <div class="col-12">
                                                         <label for="input"
-                                                            class="col-form-label">donor</label>
-                                                        <input type="text" id="donor_id" class="form-control" />
+                                                            class="col-form-label">BloodType</label>
+                                                        <input type="text" id="BloodType" class="form-control" />
                                                     </div>
 
                                                     <div class="col-12">
                                                         <label for="input"
-                                                            class="col-form-label">hospital_id</label>
-                                                        <input type="text" id="hospital_id" class="form-control" />
+                                                            class="col-form-label">Quantity</label>
+                                                        <input type="text" id="Quantity" class="form-control" />
                                                     </div>
-
-                                                </div>
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
@@ -187,7 +177,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                        
                     </div>
@@ -220,6 +210,12 @@
     </div>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
+    <!-- <script src="./js/js.js"></script> -->
+    <!-- <script src="./Helper/Helper.js"></script>
+    <script src="./Helper/HelperFormData.js"></script> -->
+    <script src="./jquery/jquery.js"></script>
+    <script src="./js/js.js"></script>
+    <script src="./Helper/Helper.js"></script>
     
 <!-- Need: Apexcharts -->
 <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>

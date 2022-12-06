@@ -2,10 +2,7 @@ package uct.so.bloodbank_API.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uct.so.bloodbank_API.Modals.bloodType;
 import uct.so.bloodbank_API.Modals.states;
-import uct.so.bloodbank_API.Repositories.statesRepo;
-import uct.so.bloodbank_API.Services.bloodTypeService;
 import uct.so.bloodbank_API.Services.stateService;
 
 import java.util.List;

@@ -23,7 +23,7 @@ public class recipientService {
     public recipients addNew(recipients recipient){
         return _Repo.save(recipient);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
 }

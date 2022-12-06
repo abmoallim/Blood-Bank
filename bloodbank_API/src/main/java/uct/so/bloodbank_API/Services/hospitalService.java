@@ -23,7 +23,7 @@ public class hospitalService {
     public hospitals addNew(hospitals hospital){
         return _Repo.save(hospital);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
 }

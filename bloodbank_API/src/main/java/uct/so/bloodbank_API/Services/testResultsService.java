@@ -24,7 +24,7 @@ public class testResultsService {
     public testResults addNew(testResults testResult){
         return _Repo.save(testResult);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
 

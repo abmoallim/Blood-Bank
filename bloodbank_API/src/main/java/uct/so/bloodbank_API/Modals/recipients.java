@@ -35,6 +35,7 @@ public class recipients {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
     private users user;
 
     @OneToMany(mappedBy = "recipient",fetch = FetchType.LAZY,

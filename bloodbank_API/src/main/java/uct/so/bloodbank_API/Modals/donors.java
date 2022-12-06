@@ -34,6 +34,7 @@ public class donors {
     states state;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
     private users user;
 
     @OneToMany(mappedBy = "donor",fetch = FetchType.LAZY,

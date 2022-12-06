@@ -22,7 +22,7 @@ public class recordService {
     public records addNew(records record){
         return _Repo.save(record);
     }
-    public void deleteRole(Long id){
+    public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
 }

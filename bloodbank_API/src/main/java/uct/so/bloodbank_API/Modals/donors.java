@@ -38,7 +38,6 @@ public class donors {
     private users user;
 
 
-
     @OneToMany(mappedBy = "donors",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnore

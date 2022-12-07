@@ -1,3 +1,16 @@
+const donerURL = "http://localhost:360/api/donors/";
+const stateURL = "http://localhost:360/api/states/";
+const bloodURL = "http://localhost:360/api/blood/";
+const recipientURL = "http://localhost:360/api/donors/";
+const roleURL = "http://localhost:360/api/donors/";
+const hospitalURL = "http://localhost:360/api/donors/";
+const userURL = "http://localhost:360/api/donors/";
+const DonationURL = "http://localhost:360/api/donors/";
+const recordURL = "http://localhost:360/api/donors/";
+const testURL = "http://localhost:360/api/donors/";
+
+
+
 $(function (){
    
     showAllStates();
@@ -31,6 +44,7 @@ function Create(){
 
     $('#Donordata').on('submit', function(e){
         e.preventDefault();
+        let SPost=donerURL; 
         
         var doners= {
             name : $('#name').val(), 
@@ -56,23 +70,46 @@ function Create(){
 
 
 function showAllblood(){
+    let BloodUrl=bloodURL;
     Helper.GetterData(BloodUrl, function (data) {
+    //   console.log(data);
       $('#DataBloodTypeTable').empty();
+       data.forEach(element => { 
+        
         $('#DataBloodTypeTable').append(`
         <tr>
+            <td>${element.id}</td>
+            <td>${element.bloodName}</td>
             
+            <td> 
+            <button type="button" class="btn btn-info" onClick=" get_blood(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModal1">
+                    Edit
+            </button>
+            </td>
+                   
 
         </tr>`)
        })
     });
 };  
  
+function get_blood(id){
+    Helper.GetterData(bloodURL+id, function (data) {
+        console.log(data.bloodName);
+        
+        $("#up-bloodType").val(data.bloodName)
+       
+        // $("#up-bloodTypeID").val(data.id)
+    })
+
+}
 
  
 
 // ............... Add New BloodType ..................
 $('#bloodtype').on('submit', function(e){
      
+    let BloodTypePost="http://localhost:360/api/blood/"; 
     
     var BloodType= {
          
@@ -93,8 +130,9 @@ $('#bloodtype').on('submit', function(e){
 
  // ...............Read All States..................
 function showAllStates(){
+    let StateUrl=stateURL;
     Helper.GetterData(StateUrl, function (data) {
-      console.log(data);
+    //   console.log(data);
       $('#StatData').empty();
        data.forEach(element => {      
         $('#StatData').append(`
@@ -125,6 +163,7 @@ function showAllStates(){
  // ............... Add New States..................
 $('#StateData').on('submit', function(e){
      
+    let SPost=stateURL; 
     
     var States= {
         stateName : $('#Name').val(), 
@@ -139,7 +178,9 @@ $('#StateData').on('submit', function(e){
 
 // ...............Read All donor..................
 function showAlldonors(){
+    let donorsUrl=donerURL;
     Helper.GetterData(donorsUrl, function (data) {
+    //   console.log(data);
       $('#donordata').empty();
        data.forEach(element => {      
         $('#donordata').append(`
@@ -175,6 +216,7 @@ function showAlldonors(){
 // ............... Add New States..................
 // $('#Donordata').on('submit', function(e){
 //     e.preventDefault();
+//     let SPost="http://localhost:360/api/donors/"; 
     
 //     var doners= {
 //         name : $('#name').val(), 
@@ -199,7 +241,9 @@ function showAlldonors(){
  // ...............Read All User..................
  
  function showAllUser(){
+    let UserUrl=userURL;
     Helper.GetterData(UserUrl, function (data) {
+    //   console.log(data);
       $('#StatData').empty();
        data.forEach(element => {      
         $('#StatData').append(`
@@ -230,6 +274,7 @@ function showAlldonors(){
 // ............... Add New User ..................
 $('#Userdata').on('submit', function(e){
      
+    let Userdat="http://localhost:360/api/users/"; 
     
     var Userdata= {
          

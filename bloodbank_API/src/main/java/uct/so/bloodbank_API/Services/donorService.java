@@ -26,8 +26,8 @@ public class donorService {
         _Repo.deleteById(id);
     }
 
-    public List<DoonerDto> getAllDoners() {
-        return _Repo.findAll().stream().map(this::covertyEntityDto).collect(Collectors.toList());
+    public List<donors> getList() {
+        return _Repo.findAll();
     }
     public DoonerDto covertyEntityDto(donors doner) {
 

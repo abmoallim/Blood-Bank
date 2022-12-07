@@ -16,8 +16,8 @@ public class donorsController {
     donorService _DonorSer;
 
     @GetMapping("/")
-    public List<DoonerDto> getAllDonors(){
-        return _DonorSer.getAllDoners();
+    public List<donors> getAllDonors(){
+        return _DonorSer.getList();
     }
     @GetMapping("/{id}")
     public donors getByID(@PathVariable Long id){

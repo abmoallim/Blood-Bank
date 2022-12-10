@@ -1,30 +1,23 @@
 $(function (){
    
+    // showAllStates();
+    showAllblood();
     showAllStates();
+    showAllUser();
+    showAllRole();
+
+   
+
    
 });
 
 // showAlldonors();
 // showAllUser();
 // Create();
-$(function (){
-    showAlldonors();
-    // Create();
-   
-});
 
 
-$(function (){
-   
-    showAllblood();
-   
-});
 
-$(function (){
-   
-    showAllUser();
-   
-});
+
 
 
 function Create(){
@@ -57,8 +50,8 @@ function Create(){
 
 
 function showAllblood(){
-    let BloodUrl="http://localhost:8080/api/blood/";
-    Helper.GetterData(BloodUrl, function (data) {
+    let bloodUrl="http://localhost:8080/api/blood/";
+    Helper.GetterData(bloodUrl, function (data) {
       console.log(data);
       $('#DataBloodTypeTable').empty();
        data.forEach(element => {      
@@ -71,23 +64,24 @@ function showAllblood(){
                     <td>${element.bloodName}</td>
                     <td>${element.quantity}</td>
 
+
                     
                     <td> 
-                    <button type="button" class="btn btn-success" onClick=" get_seller_data(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModal">
-                         Edit
+                    <button type="button" class="btn btn" onClick=" EditbloodType(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
 
                    <td>
-                       <button type="button" class="btn btn-danger" onClick=" delete_seller_data(${element.id})" data-bs-toggle="modal"  >
-                         Delete
+                       <button type="button" class="btn" onClick=" delete_data(${element.id})" data-bs-toggle="modal"  >
+                       <i class="bi bi-trash"></i>
                    </button>
                    </td>
 
         </tr>`)
        })
     });
-};  
+};   
  
 
  
@@ -113,9 +107,62 @@ $('#bloodtype').on('submit', function(e){
 )
 
 
+//............... edit bloodType............
 
- // ...............Read All States..................
-function showAllStates(){
+function EditbloodType(id){
+    let bloodUrl=`http://localhost:8080/api/blood/${id}`;
+    Helper.GetterData(bloodUrl, function (data) {
+        console.log(data);
+
+        $('#Editid').val(data.id);
+         $('#EditbloodType').val(data.bloodName);
+        $('#Editquantity').val(data.quantity);
+
+     
+      
+       })
+    
+}; 
+
+
+
+
+$('#EditbloodTyp').on('submit', function(e){
+    var id=$('#Editid').val();
+    let BloodTypePost="http://localhost:8080/api/blood/"; 
+    
+    var BloodType= {
+         
+        id:$('#Editid').val(),
+        bloodName:$('#EditbloodType').val(), 
+        quantity:$('#Editquantity').val(), 
+
+
+        
+    }
+        
+        Helper.PosterData( BloodTypePost,BloodType, function(){
+            alert(' Update');
+    });
+}
+)
+
+////.......Remove////////////////
+
+function delete_data(id){
+	let deletSellerUrl =`http://localhost:8080/api/blood/${id}`;
+
+    Helper. DeleterData(deletSellerUrl ,function(){
+        alert('Remov');
+        window.location.href = "BloodType.html";
+})
+
+}
+
+
+
+
+ function showAllStates(){
     let StateUrl="http://localhost:8080/api/states/";
     Helper.GetterData(StateUrl, function (data) {
       console.log(data);
@@ -129,14 +176,14 @@ function showAllStates(){
                     <td>${element.stateName}</td>
                     
                     <td> 
-                    <button type="button" class="btn btn-success" onClick=" get_seller_data(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModal">
-                         Edit
+                    <button type="button" class="btn btn" onClick=" get_seller_data(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+                    <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
 
                    <td>
-                       <button type="button" class="btn btn-danger" onClick=" delete_seller_data(${element.id})" data-bs-toggle="modal"  >
-                         Delete
+                       <button type="button" class="btn" onClick=" delete_seller_data(${element.id})" data-bs-toggle="modal"  >
+                       <i class="bi bi-trash"></i>
                    </button>
                    </td>
 
@@ -161,6 +208,7 @@ $('#StateData').on('submit', function(e){
     });
 }
 )
+
 
 // ...............Read All donor..................
 function showAlldonors(){
@@ -230,11 +278,12 @@ function showAlldonors(){
  
  function showAllUser(){
     let UserUrl="http://localhost:8080/api/users/";
+    
     Helper.GetterData(UserUrl, function (data) {
       console.log(data);
-      $('#StatData').empty();
+      $('#Userdata').empty();
        data.forEach(element => {      
-        $('#StatData').append(`
+        $('#Userdata').append(`
         <tr>
 
             
@@ -244,15 +293,19 @@ function showAlldonors(){
                     <td>${element.password}</td>
                     <td>${element.status}</td>
                     
+                    <td>${element.role}</td>
+                    
+
+                    
                     <td> 
-                    <button type="button" class="btn btn-success" onClick=" get_seller_data(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModal">
-                         Edit
+                    <button type="button" class="btn btn" onClick=" EditbloodType(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
 
                    <td>
-                       <button type="button" class="btn btn-danger" onClick=" delete_seller_data(${element.id})" data-bs-toggle="modal"  >
-                         Delete
+                       <button type="button" class="btn" onClick=" delete_data(${element.id})" data-bs-toggle="modal"  >
+                       <i class="bi bi-trash"></i>
                    </button>
                    </td>
 
@@ -262,23 +315,79 @@ function showAlldonors(){
 }; 
 
 // ............... Add New User ..................
-$('#Userdata').on('submit', function(e){
+$('#userdata').on('submit', function(e){
+    let RoleUrl="http://localhost:8080/api/role/";
+
      
     let Userdat="http://localhost:8080/api/users/"; 
+    
     
     var Userdata= {
          
         email:$('#email').val(), 
         userName:$('#userName').val(), 
         password:$('#password').val(), 
-        status:$('#Status').val(), 
+        status:$('#status').val(),
+        role:{id:$("#role_name").val()},
 
-
+       
+        // "id","role_name","role_id",
         
     }
         
-        Helper.PosterData( Userdat,Userdata, function(){
+        Helper.PosterData(Userdat,Userdata,function(){
+            alert('Registered');
+    });
+     
+
+}
+)
+
+
+function showAllRole(){
+    let RoleUrl="http://localhost:8080/api/role/";
+    Helper.GetterData(RoleUrl, function (data) {
+      console.log(data);
+      $('#RoleData').empty();
+       data.forEach(element => {      
+        $('#RoleData').append(`
+        <tr>
+
+            
+                    <td>${element.id}</td>
+                    <td>${element.role_name}</td>
+                    
+                    <td> 
+                    <button type="button" class="btn btn" onClick=" EditbloodType(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <i class="bi bi-box-arrow-in-down-left"></i>
+                   </button>
+                   </td>
+
+                   <td>
+                       <button type="button" class="btn" onClick=" delete_data(${element.id})" data-bs-toggle="modal"  >
+                       <i class="bi bi-trash"></i>
+                   </button>
+                   </td>
+
+        </tr>`)
+       })
+    });
+};   
+
+
+// ............... Add New Role.................
+$('#RolData').on('submit', function(e){
+     
+    let RoleUrl="http://localhost:8080/api/role/"; 
+    
+    var role= {
+        role_name:$('#role_name').val(), 
+        
+    }
+        
+        Helper.PosterData(RoleUrl, role, function(){
             alert(' Registered');
     });
 }
 )
+

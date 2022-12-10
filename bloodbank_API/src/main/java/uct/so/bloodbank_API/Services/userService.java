@@ -39,6 +39,7 @@ public class userService {
         userDTO.setPassword(users.getPassword());
         userDTO.setStatus(users.getStatus());
         userDTO.setRole_id(users.getId());
+        userDTO.setRole(users.getRole().getRole_name());
 
 
         return userDTO;

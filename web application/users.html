@@ -42,168 +42,174 @@
     <!-- ========== header end ========== -->
 
     <!-- ========== section start ========== -->
-    <section class="section">
-        <div class="container">
-            <div class="title-wrapper pt-30">
-                <div class="card w-100">
-                    <div class="card-header bg-white text-left">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            create
-                        </button>
-                    </div>
-                    <div class="col-3 mt-3 ms-auto">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" id="Search" placeholder="Search" aria-label="Search">
-                        </form>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title py-3">UserTable</h5>
-                        <div class="col-md-12 my-2">
-                            <!-- Button trigger modal -->
-                            <div class="col-md-12">
-                                <div class="table-wrapper table-responsive">
-                                    <table class="table" id="DonorTable">
-                                        <thead>
-                                            <tr>
-                                                <th> <h6>#</h6> </th>
-                                                <th><h6>Email</h6></th>
-                                                <th><h6>userName</h6></th>
-                                                <th><h6>password</h6></th>
-                                                <th><h6>Status</h6></th>
-                                                
+    
+              
 
+                    
+                    
+                    <section class="section">
+                        <div class="row" id="table-head">
+                            <div class="col-12">
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Table User</h4>
+                                    </div>
+                                    <div class="card w-100">
+                                        <div class="card-header bg-white text-left">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
+                                                create
+                                            </button>
+                    
+                                        </div>
+                                    <div class="card-body">
+                                        <div id="table1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="table1_length"><label>Show <select name="table1_length" aria-controls="table1" class="form-select form-select-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="table1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="table1"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table dataTable no-footer" id="table1" aria-describedby="table1_info">
+                                                                                     </div>
+                                        <!-- table head dark -->
+                                        <div class="col-md-32">
+                                            <div class="table-wrapper table-responsive">
+                                                <table class="table" id="talTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> <h6>#</h6> </th>
+                                                            <th><h6>Email</h6></th>
+                                                            <th><h6>userName</h6></th>
+                                                            <th><h6>password</h6></th>
+                                                            <th><h6>status</h6></th>
+                                                            <th><h6>Role</h6></th>
+                                                            <th><h6>Edit</h6></th>
+                                                            <th><h6>Delete</h6></th>
 
-
-                                              
-                                            </tr>
-                                            <!-- end table row-->
-                                        </thead>
-                                        <tbody id="USERdata"></tbody>
-                                    </table>
-                                    <!-- end table -->
+                                                          
+                                                        </tr>
+                                                        <!-- end table row-->
+                                                    </thead>
+                                                    <tbody id="Userdata"></tbody>
+                                                </table>
+                                                <!-- end table -->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Create Modal -->
-                              <div class="modal fade" id="exampleModal" tabindex="-1"
+                        </div>
+                    </section>         <!-- Create Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                UserTable
+                                            User
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="Userdata">
-                                                <div class="row g-3 align-items-center">
+                                            
+                 <section id="basic-vertical-layouts">
+                    <div class="row match-height">
+                        <div class="col-md-12 col-12">
+                            <div class="card">
+                                
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-vertical" id="userdata">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                   
 
                                                     <div class="col-12">
-                                                        <label for="input"
-                                                            class="col-form-label">Email</label>
-                                                        <input type="text" id="email" class="form-control" />
-                                                    </div>
-
-                                                    <div class="col-12">
-                                                        <label for="inputusername"
-                                                            class="col-form-label">userName</label>
-                                                        <input type="text" id="userName" class="form-control" />
-                                                    </div>
-
-                                                    <div class="col-12">
-                                                        <label for="input"
-                                                            class="col-form-label">password</label>
-                                                        <input type="text" id="password" class="form-control" />
+                                                        <div class="form-group">
+                                                            <label for="frist-name-vertical">email</label>
+                                                            <input type="email" id="email"
+                                                                class="form-control" name="email"
+                                                                placeholder="userName">
+                                                        </div>
                                                     </div>
                                                     
                                                     <div class="col-12">
-                                                        <label for="Address"
-                                                            class="col-form-label">Status</label>
-                                                        <input type="text" id="Status" class="form-control" />
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="email-id-vertical">userName</label>
+                                                            <input type="text" id="userName"
+                                                                class="form-control" name="userName"
+                                                                placeholder="email">
+                                                            </div>
                                                     </div>
-                                                     
+                                                    
+                        
                                                     <div class="col-12">
-                                                        <label for="inputuser_id" class="col-form-label">Role</label>
-                                                        <select name="" id="Role_id" required class="form-select">
+                                                        <div class="form-group">
+                                                            <label for="password-vertical">Password</label>
+                                                            <input type="text" id="password"
+                                                                class="form-control" name="password"
+                                                                placeholder="Password">
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="frist-name-vertical">Status</label>
+                                                            <input type="text" id="status"
+                                                                class="form-control" name="status"
+                                                                placeholder="status">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <label for="inputrole" class="col-form-label">Role</label>
+                                                        <select name="" id="role_name" required class="form-select">
+                                                            <option value="" disabled selected>Choose Role</option>
+                                                        </select>
+                                                    
+
+                                                   
+
+                                                    <!-- <div class="col-12">
+                                                      
+                                                        <label for="inputblood_id" class="col-form-label">BloodType</label>
+                                                        <select name="" id="blood_id" required class="form-select">
                                                             <option value="" disabled selected>Choose option</option>
                                                         </select>
-                                                    </div>
+                                                    </div> -->
 
-
-                                                    
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Applay Changes
-                                                    </button>
+                                                   
                                                 </div>
-                                            </form>
-                                        </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                    
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
+                                              
+                                            </div>
+                                            
+                                        </form>
+
+                                        
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                       
+                    </div>
+
+                </section>
+
+                
+
+               
+                
+                                     
+                            
                             <!-- Update -->
 
-                            <div class="modal fade" id="modal_modal" tabindex="-1" aria-labelledby="modal_modal"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="">
-                                                User Table
-                                            </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="hospotalForm_">
-                                                <input type="text" hidden id="id">
-                                                <div class="row g-3 align-items-center">
-                                                   
-                                                    <div class="col-12">
-                                                        <label for="input"
-                                                            class="col-form-label">Email</label>
-                                                        <input type="text" id="email" class="form-control" />
-                                                    </div>
-
-                                                    <div class="col-12">
-                                                        <label for="inputusername"
-                                                            class="col-form-label">userName</label>
-                                                        <input type="text" id="userName" class="form-control" />
-                                                    </div>
-
-                                                    <div class="col-12">
-                                                        <label for="input"
-                                                            class="col-form-label">password</label>
-                                                        <input type="text" id="password" class="form-control" />
-                                                    </div>
-                                                    
-                                                    <div class="col-12">
-                                                        <label for="Address"
-                                                            class="col-form-label">Status</label>
-                                                        <input type="text" id="Status" class="form-control" />
-                                                    </div>
-
-                                                    
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Applay Changes
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           
                         </div>
                        
                     </div>
@@ -237,7 +243,10 @@
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="./js/js.js"></script>
+    <script src="./js/Select.js"></script>
     <script src="./Helper/Helper.js"></script>
+
+
     
 <!-- Need: Apexcharts -->
 <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity(name ="tb_donors" )
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,10 +37,6 @@ public class donors {
     @JsonIgnore
     private users user;
 
-    @OneToMany(mappedBy = "donor",fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<donations> donationsList;
 
     @OneToMany(mappedBy = "donors",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)

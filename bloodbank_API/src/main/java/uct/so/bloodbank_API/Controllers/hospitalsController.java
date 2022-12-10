@@ -1,6 +1,7 @@
 package uct.so.bloodbank_API.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uct.so.bloodbank_API.Modals.hospitals;
 import uct.so.bloodbank_API.Modals.recipients;
@@ -33,5 +34,9 @@ public class hospitalsController {
     @DeleteMapping("/{id}")
     public void  deleteByID(@PathVariable Long id){
         _Ser.deleteBy(id);
+    }
+@GetMapping("/name/{name}")
+    public List<hospitals> getByName(@PathVariable String name){
+        return _Ser.getName(name);
     }
 }

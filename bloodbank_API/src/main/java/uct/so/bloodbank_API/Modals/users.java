@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "tb_users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,11 +27,12 @@ public class users {
 //    @JsonIgnore
     private roles role;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.MERGE)
     @JsonIgnore
     private donors donor;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     @JsonIgnore
     private recipients recipient;
 

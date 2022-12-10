@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "tb_hospital")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

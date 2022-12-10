@@ -26,4 +26,9 @@ public class recipientService {
     public void deleteBy(Long id){
         _Repo.deleteById(id);
     }
+
+    public List<recipients> getByState(Long id){
+        System.out.println(id);
+        return _Repo.getByStateID(id);
+    }
 }

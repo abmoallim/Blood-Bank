@@ -30,4 +30,9 @@ public class recipientController {
     public void  deleteByID(@PathVariable Long id){
         _Ser.deleteBy(id);
     }
+
+//    @GetMapping("/state/{id}")
+//    public List<recipients> getByState(@PathVariable Long id){
+//        return _Ser.getByState(id);
+//    }
 }

@@ -21,8 +21,8 @@ public class donations {
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name="donor_id", referencedColumnName = "id")
-    donors donor;
+    @JoinColumn(name="result_id", referencedColumnName = "id")
+    testResults results;
 
 
     @ManyToOne(optional = false)

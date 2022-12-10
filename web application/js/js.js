@@ -1,3 +1,16 @@
+const donerURL = "http://localhost:360/api/donors/";
+const stateURL = "http://localhost:360/api/states/";
+const bloodURL = "http://localhost:360/api/blood/";
+const recipientURL = "http://localhost:360/api/donors/";
+const roleURL = "http://localhost:360/api/donors/";
+const hospitalURL = "http://localhost:360/api/donors/";
+const userURL = "http://localhost:360/api/donors/";
+const DonationURL = "http://localhost:360/api/donors/";
+const recordURL = "http://localhost:360/api/donors/";
+const testURL = "http://localhost:360/api/donors/";
+
+
+
 $(function (){
    
     // showAllStates();
@@ -24,7 +37,7 @@ function Create(){
 
     $('#Donordata').on('submit', function(e){
         e.preventDefault();
-        let SPost="http://localhost:8080/api/donors/"; 
+        let SPost=donerURL; 
         
         var doners= {
             name : $('#name').val(), 
@@ -54,11 +67,12 @@ function showAllblood(){
     Helper.GetterData(bloodUrl, function (data) {
       console.log(data);
       $('#DataBloodTypeTable').empty();
-       data.forEach(element => {      
+       data.forEach(element => { 
+        
         $('#DataBloodTypeTable').append(`
         <tr>
-
-
+            <td>${element.id}</td>
+            <td>${element.bloodName}</td>
             
                     <td>${element.id}</td>
                     <td>${element.bloodName}</td>
@@ -83,13 +97,23 @@ function showAllblood(){
     });
 };   
  
+function get_blood(id){
+    Helper.GetterData(bloodURL+id, function (data) {
+        console.log(data.bloodName);
+        
+        $("#up-bloodType").val(data.bloodName)
+       
+        // $("#up-bloodTypeID").val(data.id)
+    })
+
+}
 
  
 
 // ............... Add New BloodType ..................
 $('#bloodtype').on('submit', function(e){
      
-    let BloodTypePost="http://localhost:8080/api/blood/"; 
+    let BloodTypePost="http://localhost:360/api/blood/"; 
     
     var BloodType= {
          
@@ -165,7 +189,7 @@ function delete_data(id){
  function showAllStates(){
     let StateUrl="http://localhost:8080/api/states/";
     Helper.GetterData(StateUrl, function (data) {
-      console.log(data);
+    //   console.log(data);
       $('#StatData').empty();
        data.forEach(element => {      
         $('#StatData').append(`
@@ -196,7 +220,7 @@ function delete_data(id){
  // ............... Add New States..................
 $('#StateData').on('submit', function(e){
      
-    let SPost="http://localhost:8080/api/states/"; 
+    let SPost=stateURL; 
     
     var States= {
         stateName : $('#Name').val(), 
@@ -212,15 +236,13 @@ $('#StateData').on('submit', function(e){
 
 // ...............Read All donor..................
 function showAlldonors(){
-    let donorsUrl="http://localhost:8080/api/donors/";
+    let donorsUrl=donerURL;
     Helper.GetterData(donorsUrl, function (data) {
-      console.log(data);
+    //   console.log(data);
       $('#donordata').empty();
        data.forEach(element => {      
         $('#donordata').append(`
         <tr>
-
-    
                     <td>${element.id}</td>
                     <td>${element.name}</td>
                     <td>${element.phone}</td>
@@ -252,7 +274,7 @@ function showAlldonors(){
 // ............... Add New States..................
 // $('#Donordata').on('submit', function(e){
 //     e.preventDefault();
-//     let SPost="http://localhost:8080/api/donors/"; 
+//     let SPost="http://localhost:360/api/donors/"; 
     
 //     var doners= {
 //         name : $('#name').val(), 
@@ -285,8 +307,6 @@ function showAlldonors(){
        data.forEach(element => {      
         $('#Userdata').append(`
         <tr>
-
-            
                     <td>${element.id}</td>
                     <td>${element.email}</td>
                     <td>${element.userName}</td>
@@ -319,7 +339,7 @@ $('#userdata').on('submit', function(e){
     let RoleUrl="http://localhost:8080/api/role/";
 
      
-    let Userdat="http://localhost:8080/api/users/"; 
+    let Userdat="http://localhost:360/api/users/"; 
     
     
     var Userdata= {

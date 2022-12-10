@@ -14,17 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table
+@Table(name = "tb_bloodType")
 
 public class bloodType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
-    //    @Column(name = "bloodName")
+    @Column(name = "bloodName")
     private String bloodName;
-    //    @Column(name = "quantity")
-    private Integer quantity;
+
 
     @OneToMany(mappedBy = "bloodType",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)

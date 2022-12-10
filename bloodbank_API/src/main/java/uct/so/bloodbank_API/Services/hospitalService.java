@@ -1,6 +1,7 @@
 package uct.so.bloodbank_API.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uct.so.bloodbank_API.Modals.hospitals;
 
@@ -25,5 +26,10 @@ public class hospitalService {
     }
     public void deleteBy(Long id){
         _Repo.deleteById(id);
+    }
+
+    public List<hospitals> getName(String name){
+        System.out.println(name);
+        return _Repo.getByName(name);
     }
 }

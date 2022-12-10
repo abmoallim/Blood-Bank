@@ -1,4 +1,4 @@
-package uct.so.bloodbank_API.Modals;
+package com.example.API_BloodBank.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,42 +6,38 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
-@Entity(name ="tb_donors" )
-@Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
-@Table(name = "tb_donors")
-
-public class donors {
+@AllArgsConstructor
+@Data
+public class donor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
-    private String phone;
     private Date brithDate;
-    private String address;
+    private String phone;
     private String Weight;
 
     @ManyToOne(optional = false)
     @JoinColumn(name="blood_id", referencedColumnName = "id")
-    bloodType bloodType;
+    private bloodType bloodType;
     @ManyToOne(optional = false)
     @JoinColumn(name="state_id", referencedColumnName = "id")
-    states state;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @JsonIgnore
-    private users user;
+    private state state;
 
+    private String username;
+    private String password;
+    private String Status;
 
-    @OneToMany(mappedBy = "donors",fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "donor",fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<testResults> testResults;
+    private List<testResult> testResults;
 
 
 

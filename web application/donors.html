@@ -48,7 +48,7 @@
                 <div class="card w-100">
                     <div class="card-header bg-white text-left">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
+                            data-bs-target="#addDonorModal" onclick="getAddingIfo()">
                             create
                         </button>
                     </div>
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                             <!-- Create Modal -->
-                              <div class="modal fade" id="exampleModal" tabindex="-1"
+                              <div class="modal fade" id="addDonorModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -97,63 +97,66 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="Donordat">
+                                            <form id="addDonorForm">
                                                 <div class="row g-3 align-items-center">
 
                                                     <div class="col-12">
-                                                        <label for="input"
+                                                        <label for="Dname"
                                                             class="col-form-label">Name</label>
-                                                        <input type="text" id="name" class="form-control" />
+                                                        <input type="text" id="Dname" required class="form-control" />
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <label for="inputusername"
+                                                        <label for="Dphone"
                                                             class="col-form-label">phone</label>
-                                                        <input type="text" id="phone" class="form-control" />
+                                                        <input type="text" id="Dphone" required class="form-control" />
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <label for="input"
+                                                        <label for="DbrithDate"
                                                             class="col-form-label">BrithDate</label>
-                                                        <input type="text" id="brithDate" class="form-control" />
+                                                        <input type="date" id="DbrithDate" required class="form-control" />
                                                     </div>
                                                     
                                                     <div class="col-12">
-                                                        <label for="Address"
+                                                        <label for="Daddress"
                                                             class="col-form-label">Address</label>
-                                                        <input type="text" id="address" class="form-control" />
-                                                    </div>
-
-                                                    <div class="col-12">
-                                                        <label for="inputWeight"
-                                                            class="col-form-label">Weight</label>
-                                                        <input type="text" id="Weight" class="form-control" />
-                                                    </div>
-
-                                                   
-
-                                                    
-                                                    
-
-                                                    <div class="col-12">
-                                                        <label for="inpuState"
-                                                            class="col-form-label">States</label>
-                                                        <input type="text" id="Name" class="form-control" />
+                                                        <input type="text" id="Daddress" required class="form-control" />
                                                     </div>
                                                     <div class="col-12">
-                                                        <label for="inpuState"
+                                                        <label for=""
                                                             class="col-form-label">BloodType</label>
-                                                        <input type="text" id="BloodType" class="form-control" />
+                                                            <select name="" id="Dblood" required class="form-control">
+                                                                <option value="" selected disabled>no blood type is selected</option>
+                                                                <option value="" > </option>
+                                                            </select>
                                                     </div>
+
+                                                    <div class="col-12">
+                                                        <label for="DWeight"
+                                                            class="col-form-label">Weight (</label> <span class="text-info" style="font-size: 11px;">in KG </span>)
+                                                        <input required type="text" id="DWeight" class="form-control" />
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <label for=""
+                                                            class="col-form-label">States</label>
+                                                        <select required name="" id="Dstate" class="form-control">
+                                                            <option value="" selected disabled>no state is selected</option>
+                                                            <option value="" > </option>
+                                                        </select>
+                                                    </div>
+                                                    
                                                     
                                                     
                                                     <div class="col-12">
-                                                        <label for="inpuState"
+                                                        <label for=""
                                                             class="col-form-label">User</label>
-                                                        <input type="text" id="User" class="form-control" />
+                                                            <select required name="" id="Duser" class="form-control">
+                                                                <option value="" selected disabled>no user is selected</option>
+                                                                <option value="" > </option>
+                                                            </select>
                                                     </div>
-                                                   
-
 
 
                                                     <div class="modal-footer">

@@ -1,10 +1,11 @@
 package uct.so.bloodbank_API.Controllers;
 
-import DTO.UserDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import uct.so.bloodbank_API.DTO.userDTO;
 import uct.so.bloodbank_API.Modals.users;
-import uct.so.bloodbank_API.Repositories.usersRepo;
+
 import uct.so.bloodbank_API.Services.userService;
 
 import java.util.List;
@@ -15,8 +16,13 @@ public class usersController {
     @Autowired
     userService _userRe;
     @GetMapping("/")
-    public List<UserDTO> getAllUsers(){
-        return _userRe.getAllUserDTO();
+    public List<users> getAllUsers(){
+        return _userRe.getAllUser();
+    }
+
+    @GetMapping("/donor/{id}")
+    public List<userDTO> getDonorUsersDTO(@PathVariable Long id){
+        return _userRe.getDonorUsersDTO(id);
     }
     @PostMapping("/")
     public users save(@RequestBody users user){

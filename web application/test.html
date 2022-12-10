@@ -38,26 +38,7 @@
 
 <main class="main-wrapper">
     <!-- ========== header start ========== -->
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-6">
-                    <div class="header-left d-flex align-items-center">
-                       
-                        <div class="header-search d-none d-md-flex">
-                            <form action="#">
-                                <input type="text" placeholder="Search..."
-                                 />
-                                 <button><i class="lni lni-search-alt">Search</i></button>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </header>
+    
     <!-- ========== header end ========== -->
 
     <!-- ========== section start ========== -->
@@ -67,84 +48,116 @@
                 <div class="card w-100">
                     <div class="card-header bg-white text-left">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
+                            data-bs-target="#addDonorModal" onclick="getAddingIfo()">
                             create
                         </button>
                     </div>
+                    <div class="col-3 mt-3 ms-auto">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" id="Search" placeholder="Search" aria-label="Search">
+                        </form>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title py-3">hospital Table</h5>
+                        <h5 class="card-title py-3">DonorTable</h5>
                         <div class="col-md-12 my-2">
                             <!-- Button trigger modal -->
                             <div class="col-md-12">
                                 <div class="table-wrapper table-responsive">
-                                    <table class="table" id="hospitalTable">
+                                    <table class="table" id="DonorTable">
                                         <thead>
                                             <tr>
                                                 <th> <h6>#</h6> </th>
-                                                <th><h6>isHealthy</h6></th>
-                                                <th><h6>description</h6></th>
-                                                <th><h6>date</h6></th>
-                                                 
                                                 <th><h6>Donor</h6></th>
-
-                    
-
-
+                                                <th><h6>Hospital</h6></th>
+                                                <th><h6>Is healthy</h6></th>
+                                                <th><h6>Description</h6></th>
+                                                <th><h6>Date</h6></th>
+                                                
+                                                
+                                                
                                             </tr>
                                             <!-- end table row-->
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody id="testResultDate"></tbody>
                                     </table>
                                     <!-- end table -->
                                 </div>
                             </div>
                             <!-- Create Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                              <div class="modal fade" id="addDonorModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                hospitalTable
+                                                Donor Table
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="BloodType">
+                                            <form id="addDonorForm">
                                                 <div class="row g-3 align-items-center">
 
                                                     <div class="col-12">
-                                                        <label for="inputus_hospitalnameername"
-                                                            class="col-form-label">isHealthy</label>
-                                                        <input type="text" id="isHealthy" class="form-control" />
+                                                        <label for="Dname"
+                                                            class="col-form-label">Name</label>
+                                                        <input type="text" id="Dname" required class="form-control" />
                                                     </div>
 
+                                                    <div class="col-12">
+                                                        <label for="Dphone"
+                                                            class="col-form-label">phone</label>
+                                                        <input type="text" id="Dphone" required class="form-control" />
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <label for="DbrithDate"
+                                                            class="col-form-label">BrithDate</label>
+                                                        <input type="date" id="DbrithDate" required class="form-control" />
+                                                    </div>
                                                     
-                                                        <div class="col-12">
-                                                            <label for="inputus_hospitalnameername"
-                                                                class="col-form-label">description</label>
-                                                            <input type="text" id="description" class="form-control" />
-                                                        </div>
+                                                    <div class="col-12">
+                                                        <label for="Daddress"
+                                                            class="col-form-label">Address</label>
+                                                        <input type="text" id="Daddress" required class="form-control" />
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label for=""
+                                                            class="col-form-label">BloodType</label>
+                                                            <select name="" id="Dblood" required class="form-control">
+                                                                <option value="" selected disabled>no blood type is selected</option>
+                                                                <option value="" > </option>
+                                                            </select>
+                                                    </div>
 
-                                                        
-                                                            
-                                                           
-                                                            <div class="col-12">
-                                                                <label for="inputdonor_id" class="col-form-label">Donor</label>
-                                                                <select name="" id="donor_id" required class="form-select">
-                                                                    <option value="" disabled selected>Choose option</option>
-                                                                </select>
-                                                            </div>
+                                                    <div class="col-12">
+                                                        <label for="DWeight"
+                                                            class="col-form-label">Weight (</label> <span class="text-info" style="font-size: 11px;">in KG </span>)
+                                                        <input required type="text" id="DWeight" class="form-control" />
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <label for=""
+                                                            class="col-form-label">States</label>
+                                                        <select required name="" id="Dstate" class="form-control">
+                                                            <option value="" selected disabled>no state is selected</option>
+                                                            <option value="" > </option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                    <div class="col-12">
+                                                        <label for=""
+                                                            class="col-form-label">User</label>
+                                                            <select required name="" id="Duser" class="form-control">
+                                                                <option value="" selected disabled>no user is selected</option>
+                                                                <option value="" > </option>
+                                                            </select>
+                                                    </div>
 
 
-                                                            <div class="col-12">
-                                                                <label for="inputus_hospitalnameername"
-                                                                    class="col-form-label">date</label>
-                                                                <input type="date" id="date" class="form-control" />
-                                                            </div>
-                                                           
-                                                  
                                                     <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">
@@ -160,73 +173,6 @@
                                 </div>
                             </div>
                             <!-- Update -->
-
-                            <div class="modal fade" id="modal_modal" tabindex="-1" aria-labelledby="modal_modal"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="">
-                                                hospital Table
-                                            </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="BloodTypeForm_">
-                                                <input type="text" hidden id="id">
-                                                
-                                                <div class="col-12">
-                                                    <label for="inputus_hospitalnameername"
-                                                        class="col-form-label">isHealthy</label>
-                                                    <input type="text" id="isHealthy" class="form-control" />
-                                                </div>
-
-                                                <div class="row g-3 align-items-center">
-                                                    <div class="col-12">
-                                                        <label for="inputus_hospitalnameername"
-                                                            class="col-form-label">description</label>
-                                                        <input type="text" id="description" class="form-control" />
-                                                    </div>
-
-                                                    <div class="row g-3 align-items-center">
-                                                        <div class="col-12">
-                                                            <label for="inputus_hospitalnameername"
-                                                                class="col-form-label">date</label>
-                                                            <input type="date" id="date" class="form-control" />
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label for="inputdonor_id" class="col-form-label">Donor</label>
-                                                            <select name="" id="donor_id" required class="form-select">
-                                                                <option value="" disabled selected>Choose option</option>
-                                                            </select>
-                                                        </div>
-                                                        
-                                                        
-    
-
-                                                
-                                                
-                                                   
-                                                    
-                                                    
-                                                   
-                                                
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Applay Changes
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                        
                     </div>
@@ -247,11 +193,11 @@
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2021 &copy; UCT </p>
+                        <p>2021 &copy; Mazer</p>
                     </div>
                     <div class="float-end">
                         <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="#">Team Ups</a></p>
+                                href="https://saugi.me">Saugi</a></p>
                     </div>
                 </div>
             </footer>
@@ -259,6 +205,8 @@
     </div>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="./js/testResult.js"></script>
+    <script src="./Helper/Helper.js"></script>
     
 <!-- Need: Apexcharts -->
 <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>

@@ -1,7 +1,8 @@
 package uct.so.bloodbank_API.Controllers;
 
-import DTO.DoonerDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import uct.so.bloodbank_API.Modals.donors;
 import uct.so.bloodbank_API.Services.donorService;
@@ -31,6 +32,11 @@ public class donorsController {
     @DeleteMapping("/{id}")
     public void  deleteByID(@PathVariable Long id){
         _DonorSer.deleteBy(id);
+    }
+
+    @PutMapping("/U/")
+    public void UpdateUID(){
+        _DonorSer.UpdateUID();
     }
 
 }

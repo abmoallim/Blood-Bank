@@ -4,16 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Donor</title>
     
     <link rel="stylesheet" href="assets/css/main/app.css">
     <link rel="stylesheet" href="assets/css/main/app-dark.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
+    <link rel="stylesheet" href="./dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="assets/css/pages/fontawesome.css">
+<link rel="stylesheet" href="assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="assets/css/pages/datatables.css">
     
 <link rel="stylesheet" href="assets/css/shared/iconly.css">
+<link rel="stylesheet" href="./style.css">
 
-<script src="./assets/js/jquery.js"></script>
+<script src="./dist/jquery.js"></script>
 <script> 
     $(function(){
       $("#sidebarme").load("sidebar.html"); 
@@ -62,18 +68,18 @@
                         <div class="col-md-12 my-2">
                             <!-- Button trigger modal -->
                             <div class="col-md-12">
-                                <div class="table-wrapper table-responsive">
-                                    <table class="table" id="DonorTable">
+                                <div class="table-wrapper table-responsive" id="tbl">
+                                    <table class="table" id="table">
                                         <thead>
                                             <tr>
                                                 <th> <h6>#</h6> </th>
                                                 <th><h6>name</h6></th>
                                                 <th><h6>phone</h6></th>
-                                                <th><h6>brithDate</h6></th>
-                                                <th><h6>Address</h6></th>
-                                                <th><h6>Weight</h6></th>
+                                                <th><h6>Age</h6></th>
                                                 <th><h6>BloodType</h6></th>
+                                                <th><h6>Weight</h6></th>
                                                 <th><h6>States</h6></th>
+                                                <th><h6>Status</h6></th>
                                                 <th><h6>Actions</h6></th>
                                                 
                                             </tr>
@@ -84,6 +90,7 @@
                                     <!-- end table -->
                                 </div>
                             </div>
+
                             <!-- Create Modal -->
                               <div class="modal fade" id="addDonorModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -118,11 +125,7 @@
                                                         <input type="date" id="DbrithDate" required class="form-control" />
                                                     </div>
                                                     
-                                                    <div class="col-12">
-                                                        <label for="Daddress"
-                                                            class="col-form-label">Address</label>
-                                                        <input type="text" id="Daddress" required class="form-control" />
-                                                    </div>
+                                                    
                                                     <div class="col-12">
                                                         <label for=""
                                                             class="col-form-label">BloodType</label>
@@ -132,10 +135,15 @@
                                                             </select>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-6">
                                                         <label for="DWeight"
-                                                            class="col-form-label">Weight (</label> <span class="text-info" style="font-size: 11px;">in KG </span>)
+                                                            class="col-form-label">Weight </label>
                                                         <input required type="text" id="DWeight" class="form-control" />
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="DWeight"
+                                                            class="col-form-label ">Measurement </label> 
+                                                        <input required type="text" id="" readonly value="KG" class="form-control" />
                                                     </div>
 
                                                     <div class="col-12">
@@ -146,19 +154,16 @@
                                                             <option value="" > </option>
                                                         </select>
                                                     </div>
-                                                    
-                                                    
-                                                    
                                                     <div class="col-12">
-                                                        <label for=""
-                                                            class="col-form-label">User</label>
-                                                            <select required name="" id="Duser" class="form-control">
-                                                                <option value="" selected disabled>no user is selected</option>
-                                                                <option value="" > </option>
-                                                            </select>
+                                                        <label for="Dusername"
+                                                            class="col-form-label">Username</label>
+                                                        <input type="text" id="Dusername" required class="form-control" />
                                                     </div>
-
-
+                                                    <div class="col-12">
+                                                        <label for="Dpassword"
+                                                            class="col-form-label">Password</label>
+                                                        <input type="text" id="Dpassword" required class="form-control" />
+                                                    </div>
                                                     <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">
@@ -169,17 +174,131 @@
                                                     </button>
                                                 </div>
                                             </form>
+
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- Update -->
+
+                            
+
                         </div>
                        
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="editDonorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close cls" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="editDonorForm">
+                <div class="row g-3 align-items-center">
+
+                    <div class="col-12">
+                        <label for="up-Dname"
+                            class="col-form-label">Name</label>
+                        <input type="text" id="up-Dname" required class="form-control" />
+                        <input type="text" id="up-DID" required class="form-control" />
+                    </div>
+
+                    <div class="col-12">
+                        <label for="up-Dphone"
+                            class="col-form-label">phone</label>
+                        <input type="text" id="up-Dphone" required class="form-control" />
+                    </div>
+
+                    <div class="col-12">
+                        <label for="up-DbrithDate"
+                            class="col-form-label">BrithDate</label>
+                        <input type="date" id="up-DbrithDate" required class="form-control" />
+                    </div>
+                    
+                   
+                    <div class="col-12">
+                        <label for=""
+                            class="col-form-label">BloodType</label>
+                            <select name="" id="up-Dblood" required class="form-control">
+                                <option value="" selected disabled>no blood type is selected</option>
+                                <option value="" > </option>
+                            </select>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="up-DWeight"
+                            class="col-form-label">Weight </label>
+                        <input required type="text" id="up-DWeight" class="form-control" />
+                    </div>
+                    <div class="col-4">
+                        <label for="up-DWeigt"
+                            class="col-form-label ">Measurement </label> 
+                        <input required type="text" id="" readonly value="KG" class="form-control" />
+                    </div>
+
+                    <div class="col-12">
+                        <label for=""
+                            class="col-form-label">States</label>
+                        <select required name="" id="up-Dstate" class="form-control">
+                            <option value="" selected disabled>no state is selected</option>
+                            <option value="" > </option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="up-Dusername"
+                            class="col-form-label">Username</label>
+                        <input type="text" id="up-Dusername" required class="form-control" />
+                    </div>
+                    <div class="col-12">
+                        <label for="Dpassword"
+                            class="col-form-label">Password</label>
+                        <input type="password" id="up-Dpassword" required class="form-control" />
+                    </div>
+
+                    <div class="col-12">
+                        <label for="up-Dstatus"
+                            class="col-form-label">Status</label>
+                            <select name="" id="up-Dstatus" required class="form-control">
+                                <option value="" selected disabled>Sellect the status</option>
+                                <option value="Active" > Active</option>
+                                <option value="Pendding" > Pendding</option>
+                                <option value="In active" >In active </option>
+                            </select>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary cls"
+                        data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Applay Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
         <!-- end container -->
     </section>
     <!-- ========== section end ========== -->
@@ -204,14 +323,25 @@
             </footer>
         </div>
     </div>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/app.js"></script>
+
+  <script src="./dist/jquery.js"></script>
+  <script src="./dist/js/bootstrap.min.js"></script>
+
+    <!-- <script src="./assets/js/jquery.js"></script> -->
+    <!-- <script src="assets/js/bootstrap.js"></script> -->
+    <!-- <script src="assets/js/app.js"></script> -->
     <script src="./js/donor.js"></script>
-    <script src="./Helper/Helper.js"></script>
-    
+
+    <!-- <script src="./Helper/Helper.js"></script> -->
 <!-- Need: Apexcharts -->
-<script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-<script src="assets/js/pages/dashboard.js"></script>
+<!-- <script src="assets/extensions/apexcharts/apexcharts.min.js"></script> -->
+<!-- <script src="assets/js/pages/dashboard.js"></script> -->
+
+<!-- <script src="assets/extensions/jquery/jquery.min.js"></script> -->
+<script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+<script src="assets/js/pages/datatables.js"></script>
+
+
 
 </body>
 

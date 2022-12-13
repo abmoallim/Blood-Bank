@@ -1,5 +1,5 @@
 // get users
-let uri="http://localhost:3030/api/donor/"
+let uri="http://localhost:3030/api/recipient/"
 
 let stateUrl="http://localhost:3030/api/state/"
 let bloodTyeUrl="http://localhost:3030/api/blood/"
@@ -195,13 +195,16 @@ function updateDonor(id){
                 $tr.append("<td>"+item.name+"</td>");
                 $tr.append("<td>"+item.phone +"</td>");
 
+
                 var DateToStr = (item.brithDate)
                 var bDate = new Date(DateToStr)
 
                 $tr.append("<td>"+getAge(bDate) +"</td>");
 
+            
+
                 $tr.append("<td>"+item.bloodType.bloodName+"</td>");
-                $tr.append("<td>"+item.weight +"</td>");
+               
                 $tr.append("<td>"+item.state.stateName+"</td>");
                 if(item.status == "Active"){
                   $tr.append(`<td class="  badge bg-success mt-3" >${item.status}  </td>    `);
@@ -235,7 +238,6 @@ function updateDonor(id){
         }  
     });
   };
-
 
   function getAge(birthDate) {
     var now = new Date();

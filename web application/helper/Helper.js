@@ -1,6 +1,10 @@
 
 
 let Helper = { 
+    
+    
+
+
 
     LoginPost : function (url,success,error){
         $.ajax({
@@ -89,6 +93,4 @@ let Helper = {
    
 
 }
-
-
 

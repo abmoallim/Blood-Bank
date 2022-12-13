@@ -64,7 +64,7 @@
                         </form>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title py-3">DonorTable</h5>
+                        <h5 class="card-title py-3">Recipients</h5>
                         <div class="col-md-12 my-2">
                             <!-- Button trigger modal -->
                             <div class="col-md-12">
@@ -77,7 +77,6 @@
                                                 <th><h6>phone</h6></th>
                                                 <th><h6>Age</h6></th>
                                                 <th><h6>BloodType</h6></th>
-                                            
                                                 <th><h6>States</h6></th>
                                                 <th><h6>Status</h6></th>
                                                 <th><h6>Actions</h6></th>
@@ -135,16 +134,7 @@
                                                             </select>
                                                     </div>
 
-                                                    <div class="col-6">
-                                                        <label for="DWeight"
-                                                            class="col-form-label">Weight </label>
-                                                        <input required type="text" id="DWeight" class="form-control" />
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <label for="DWeight"
-                                                            class="col-form-label ">Measurement </label> 
-                                                        <input required type="text" id="" readonly value="KG" class="form-control" />
-                                                    </div>
+                                                  
 
                                                     <div class="col-12">
                                                         <label for=""
@@ -196,7 +186,7 @@
 
   
   <!-- Modal -->
-  <div class="modal fade" id="editDonorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editRecipentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -213,7 +203,7 @@
                         <label for="up-Dname"
                             class="col-form-label">Name</label>
                         <input type="text" id="up-Dname" required class="form-control" />
-                        <input type="text" id="up-DID" required class="form-control" />
+                        <input type="hidden" id="up-DID" required class="form-control" />
                     </div>
 
                     <div class="col-12">
@@ -238,17 +228,7 @@
                             </select>
                     </div>
 
-                    <div class="col-6">
-                        <label for="up-DWeight"
-                            class="col-form-label">Weight </label>
-                        <input required type="text" id="up-DWeight" class="form-control" />
-                    </div>
-                    <div class="col-4">
-                        <label for="up-DWeigt"
-                            class="col-form-label ">Measurement </label> 
-                        <input required type="text" id="" readonly value="KG" class="form-control" />
-                    </div>
-
+                   
                     <div class="col-12">
                         <label for=""
                             class="col-form-label">States</label>

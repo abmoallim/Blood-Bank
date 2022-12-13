@@ -14,7 +14,7 @@ $( document ).ready(function() {
 
     $(".cls").on('click', function(){
         $("#add-donor").modal('hide');
-        $("#editDonorModal").modal('hide');
+        $("#editRecipentModal").modal('hide');
     })
     $("#editDonorForm").on('submit', function(){
       editThis()
@@ -149,7 +149,7 @@ function getEdintingInfo(){
 
 function updateDonor(id){
     getEdintingInfo()
-    $("#editDonorModal").modal('show');
+    $("#editRecipentModal").modal('show');
 
     $.ajax({  
         url: uri+`${id}`,  
@@ -291,7 +291,7 @@ function updateDonor(id){
         success: function (data ) {
           console.log("Suuceccfully Updated");
           // console.log(data);
-          $("#editDonorModal").modal('hide');
+          $("#editRecipentModal").modal('hide');
           window.location.reload();
         //   GetDonors(); 
               
@@ -312,7 +312,7 @@ function updateDonor(id){
 
   function AddNew(){
         
-        let newDonor ={
+        let newRecipient ={
             name: $("#Dname").val(),
             phone: $("#Dphone").val(),
             brithDate: $("#DbrithDate").val(),
@@ -332,7 +332,7 @@ function updateDonor(id){
             url: uri,  
             type: 'POST',
             contentType :'application/json',
-            data: JSON.stringify(newDonor),  
+            data: JSON.stringify(newRecipient),  
          
             success: function (data ) {
               console.log("Suuceccfully added");

@@ -25,6 +25,13 @@ public class donationController {
         return _service.getByID(id);
     }
 
+    @GetMapping("/donations/")
+    public Long GetNumberOfDonations(){
+
+        return  _service.numOfDonations();
+
+    }
+
     @PostMapping("/")
     public donation save(@RequestBody donation donations){
         return _service.addNew(donations);

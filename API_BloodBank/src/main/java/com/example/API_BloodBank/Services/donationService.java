@@ -28,4 +28,10 @@ public class donationService {
     public void deleteBy(Long id){
         _repo.deleteById(id);
     }
+
+    public Long numOfDonations(){
+        Long num = _repo.findAll().stream().count();
+
+        return  num;
+    }
 }

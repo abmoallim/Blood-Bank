@@ -29,5 +29,10 @@ public class recordsService {
         _repo.deleteById(id);
     }
 
+    public Long numOfRecords(){
+        Long num = _repo.findAll().stream().count();
+        return  num;
+    }
+
     
 }

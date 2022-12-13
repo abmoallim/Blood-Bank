@@ -34,4 +34,11 @@ public class recordsController {
         _service.deleteBy(id);
     }
 
+    @GetMapping("/records/")
+    public Long GetNumberOfRecords(){
+
+        return  _service.numOfRecords();
+
+    }
+
 }

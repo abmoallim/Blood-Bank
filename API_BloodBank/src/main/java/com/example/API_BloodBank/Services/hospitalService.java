@@ -28,4 +28,10 @@ public class hospitalService {
     public void deleteBy(Long id){
         _repo.deleteById(id);
     }
+
+    public Long numOfHospitals(){
+        Long num = _repo.findAll().stream().count();
+
+        return  num;
+    }
 }

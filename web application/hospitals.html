@@ -38,175 +38,276 @@
 
 <main class="main-wrapper">
     <!-- ========== header start ========== -->
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-5 col-md-5 col-6">
-                    <div class="header-left d-flex align-items-center">
-                       
-                        <div class="header-search d-none d-md-flex">
-                            <form action="#">
-                                <input type="text" placeholder="Search..." />
-                                <button><i class="lni lni-search-alt"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </header>
+    
     <!-- ========== header end ========== -->
 
     <!-- ========== section start ========== -->
-    <section class="section">
-        <div class="container">
-            <div class="title-wrapper pt-30">
-                <div class="card w-100">
-                    <div class="card-header bg-white text-left">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            create
-                        </button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title py-3">hospital Table</h5>
-                        <div class="col-md-12 my-2">
-                            <!-- Button trigger modal -->
-                            <div class="col-md-12">
-                                <div class="table-wrapper table-responsive">
-                                    <table class="table" id="hospitalTable">
-                                        <thead>
-                                            <tr>
-                                                <th> <h6>#</h6> </th>
-                                                <th><h6>name</h6></th>
-                                                <th><h6>location</h6></th>
-                                                <th><h6>status</h6></th>
+    
+              
 
+                    
+                    
+                    <section class="section">
+                        <div class="row" id="table-head">
+                            <div class="col-12">
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Table Hospital</h4>
+                                    </div>
+                                    <div class="card w-100">
+                                        <div class="card-header bg-white text-left">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
+                                                create
+                                            </button>
+                    
+                                        </div>
+                                    <div class="card-body">
+                                        <div id="table1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="table1_length"><label>Show <select name="table1_length" aria-controls="table1" class="form-select form-select-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="table1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="table1"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table dataTable no-footer" id="table1" aria-describedby="table1_info">
+                                                                                     </div>
+                                        <!-- table head dark -->
+                                        <div class="col-md-32">
+                                            <div class="table-wrapper table-responsive">
+                                                <table class="table" id="talTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> <h6>#</h6> </th>
+                                                            <th><h6>Name</h6></th>
+                                                            <th><h6>location</h6></th>
+                                                            <th><h6>password</h6></th>
+                                                            <th><h6>status</h6></th>
+                                                            
+                                                            <th><h6>Edit</h6></th>
+                                                            <th><h6>Delete</h6></th>
 
-                                            </tr>
-                                            <!-- end table row-->
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                    <!-- end table -->
+                                                          
+                                                        </tr>
+                                                        <!-- end table row-->
+                                                    </thead>
+                                                    <tbody id="HospitalData"></tbody>
+                                                </table>
+                                                <!-- end table -->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Create Modal -->
+                        </div>
+                    </section>         <!-- Create Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
-                                                hospitalTable
+                                            Hospital
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="BloodType">
-                                                <div class="row g-3 align-items-center">
+                                            
+                 <section id="basic-vertical-layouts">
+                    <div class="row match-height">
+                        <div class="col-md-12 col-12">
+                            <div class="card">
+                                
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-vertical" id="HospitalsData">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                   
+
+                                                   
 
                                                     <div class="col-12">
-                                                        <label for="inputus_hospitalnameername"
-                                                            class="col-form-label">Name</label>
-                                                        <input type="text" id="Name" class="form-control" />
-                                                    </div>
-
-                                                    <div class="row g-3 align-items-center">
-                                                        <div class="col-12">
-                                                            <label for="inputus_hospitalnameername"
-                                                                class="col-form-label">Location</label>
-                                                            <input type="text" id="location" class="form-control" />
-                                                        </div>
-
-                                                        <div class="row g-3 align-items-center">
-                                                            <div class="col-12">
-                                                                <label for="inputus_hospitalnameername"
-                                                                    class="col-form-label">Status</label>
-                                                                <input type="text" id="status" class="form-control" />
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="email-id-vertical">name</label>
+                                                            <input type="text" id="name"
+                                                                class="form-control" name="name"
+                                                                placeholder="name">
                                                             </div>
-
-                                                           
-                                                  
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Applay Changes
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Update -->
-
-                            <div class="modal fade" id="modal_modal" tabindex="-1" aria-labelledby="modal_modal"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="">
-                                                hospital Table
-                                            </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="BloodTypeForm_">
-                                                <input type="text" hidden id="id">
-                                                
-                                                <div class="col-12">
-                                                    <label for="inputus_hospitalnameername"
-                                                        class="col-form-label">Name</label>
-                                                    <input type="text" id="Name" class="form-control" />
-                                                </div>
-
-                                                <div class="row g-3 align-items-center">
-                                                    <div class="col-12">
-                                                        <label for="inputus_hospitalnameername"
-                                                            class="col-form-label">Location</label>
-                                                        <input type="text" id="location" class="form-control" />
                                                     </div>
+                                                    
 
-                                                    <div class="row g-3 align-items-center">
-                                                        <div class="col-12">
-                                                            <label for="inputus_hospitalnameername"
-                                                                class="col-form-label">Status</label>
-                                                            <input type="text" id="status" class="form-control" />
-                                                        </div>
-
-                                                
-                                                   
+                                                    <div class="col-12">
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="email-id-vertical">name</label>
+                                                            <input type="text" id="location"
+                                                                class="form-control" name="location"
+                                                                placeholder="location">
+                                                            </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-12">
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="email-id-vertical">status</label>
+                                                            <input type="text" id="status"
+                                                                class="form-control" name="status"
+                                                                placeholder="status">
+                                                            </div>
+                                                    </div>
                                                     
                                                     
+                                                    
                                                    
-                                                
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Applay Changes
-                                                    </button>
+                                                   
+                                                   
+                                            </div>
+                                            <div class="modal-footer">
+                                                    
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                                 </div>
-                                            </form>
-                                        </div>
+                                              
+                                            </div>
+                                            
+                                        </form>
+
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                        
                     </div>
+
+                </section>
+
+                
+
+               
+                
+                                     
+                            
+                            <!-- Update -->
+
+                           
+                        </div>
+                       
+                    </div>
                 </div>
             </div>
+
+             <!-- ... update.. -->
+
+             <div class="modal fade" id="exampleModa" tabindex="-1"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <h5 class="modal-title" id="exampleModalLabel">
+                         Hospital
+                         </h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal"
+                             aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                         
+<section id="basic-vertical-layouts">
+ <div class="row match-height">
+     <div class="col-md-12 col-12">
+         <div class="card">
+             
+             <div class="card-content">
+                 <div class="card-body">
+                     <form class="form form-vertical" id="EditHospital">
+                         <div class="form-body">
+                             <div class="row">
+                                
+                                <div class="col-12">
+                                     
+                                    <div class="form-group">
+                                        <label for="email-id-vertical">name</label>
+                                        <input type="id" id="editId"
+                                            class="form-control" name="ID"
+                                            placeholder="ID" readonly>
+                                        </div>
+                                </div>
+
+                                
+
+                                 <div class="col-12">
+                                     
+                                     <div class="form-group">
+                                         <label for="email-id-vertical">name</label>
+                                         <input type="text" id="Editname"
+                                             class="form-control" name="Editname"
+                                             placeholder="Editname">
+                                         </div>
+                                 </div>
+                                 
+
+                                 <div class="col-12">
+                                     
+                                     <div class="form-group">
+                                         <label for="email-id-vertical">name</label>
+                                         <input type="text" id="Editlocation"
+                                             class="form-control" name="Editlocation"
+                                             placeholder="Editlocation">
+                                         </div>
+                                 </div>
+                                 
+                                 <div class="col-12">
+                                     
+                                     <div class="form-group">
+                                         <label for="email-id-vertical">status</label>
+                                         <input type="text" id="Editstatus"
+                                             class="form-control" name="Editstatus"
+                                             placeholder="status">
+                                         </div>
+                                 </div>
+                                 
+                                 
+                                 
+                                
+                                
+                                
+                         </div>
+                         <div class="modal-footer">
+                                 
+                             <div class="col-12 d-flex justify-content-end">
+                                 <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                 <button type="reset"
+                                     class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                             </div>
+                           
+                         </div>
+                         
+                     </form>
+
+                     
+                 </div>
+             </div>
+         </div>
+     </div>
+    
+ </div>
+
+</section>
+
+
+
+
+
+                  
+         
+         
+
+        
+     </div>
+    
+ </div>
+</div>
+</div>
+
         </div>
         <!-- end container -->
     </section>
@@ -234,6 +335,11 @@
     </div>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="./js/js.js"></script>
+   
+    <script src="./Helper/Helper.js"></script>
+
+
     
 <!-- Need: Apexcharts -->
 <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>

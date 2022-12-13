@@ -1,69 +1,30 @@
-const donerURL = "http://localhost:360/api/donors/";
-const stateURL = "http://localhost:360/api/states/";
-const bloodURL = "http://localhost:360/api/blood/";
-const recipientURL = "http://localhost:360/api/donors/";
-const roleURL = "http://localhost:360/api/donors/";
-const hospitalURL = "http://localhost:360/api/donors/";
-const userURL = "http://localhost:360/api/donors/";
-const DonationURL = "http://localhost:360/api/donors/";
-const recordURL = "http://localhost:360/api/donors/";
-const testURL = "http://localhost:360/api/donors/";
+let UserUrl="http://localhost:3030/api/user/"; 
 
 
 
 $(function (){
    
-    // showAllStates();
+
     showAllblood();
     showAllStates();
     showAllUser();
     showAllRole();
-
+    showAllHospital();
+    
+    showAllRolesSelect();
    
 
    
 });
 
-// showAlldonors();
-// showAllUser();
-// Create();
 
 
-
-
-
-
-function Create(){
-
-    $('#Donordata').on('submit', function(e){
-        e.preventDefault();
-        let SPost=donerURL; 
-        
-        var doners= {
-            name : $('#name').val(), 
-            phone : $('#phone').val(), 
-            brithDate : $('#brithDate').val(), 
-            address : $('#address').val(), 
-            weight : $('#Weight').val(), 
-            stateName:$("#Name").val(),
-            bloodName:$("#BloodType").val(),
-            userName:$("#User").val()
-    
-        }
-            
-            Helper.PosterData(SPost, doners, function(){
-                alert(' Registered');
-        });
-    }
-    )
-
-};
 
 // ...............Read All BloodType..................
 
 
 function showAllblood(){
-    let bloodUrl="http://localhost:8080/api/blood/";
+    let bloodUrl="http://localhost:3030/api/blood/";
     Helper.GetterData(bloodUrl, function (data) {
       console.log(data);
       $('#DataBloodTypeTable').empty();
@@ -71,17 +32,16 @@ function showAllblood(){
         
         $('#DataBloodTypeTable').append(`
         <tr>
-            <td>${element.id}</td>
-            <td>${element.bloodName}</td>
+            
             
                     <td>${element.id}</td>
                     <td>${element.bloodName}</td>
-                    <td>${element.quantity}</td>
+                    
 
 
                     
                     <td> 
-                    <button type="button" class="btn btn" onClick=" EditbloodType(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <button type="button" class="btn btn" onClick="EditbloodType(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
                     <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
@@ -96,24 +56,13 @@ function showAllblood(){
        })
     });
 };   
- 
-function get_blood(id){
-    Helper.GetterData(bloodURL+id, function (data) {
-        console.log(data.bloodName);
-        
-        $("#up-bloodType").val(data.bloodName)
-       
-        // $("#up-bloodTypeID").val(data.id)
-    })
 
-}
 
- 
 
 // ............... Add New BloodType ..................
 $('#bloodtype').on('submit', function(e){
      
-    let BloodTypePost="http://localhost:360/api/blood/"; 
+    let BloodTypePost="http://localhost:3030/api/blood/"; 
     
     var BloodType= {
          
@@ -134,18 +83,17 @@ $('#bloodtype').on('submit', function(e){
 //............... edit bloodType............
 
 function EditbloodType(id){
-    let bloodUrl=`http://localhost:8080/api/blood/${id}`;
-    Helper.GetterData(bloodUrl, function (data) {
-        console.log(data);
+    let loodUrl=`http://localhost:3030/api/blood/${id}`;
+    Helper.GetterData(loodUrl, function (data) {
+        // console.log(data);
 
         $('#Editid').val(data.id);
-         $('#EditbloodType').val(data.bloodName);
-        $('#Editquantity').val(data.quantity);
-
+        $('#EditbloodType').val(data.bloodName);
+        
      
       
        })
-    
+      
 }; 
 
 
@@ -153,14 +101,13 @@ function EditbloodType(id){
 
 $('#EditbloodTyp').on('submit', function(e){
     var id=$('#Editid').val();
-    let BloodTypePost="http://localhost:8080/api/blood/"; 
+    let BloodTypePost="http://localhost:3030/api/blood/"; 
     
     var BloodType= {
          
         id:$('#Editid').val(),
-        bloodName:$('#EditbloodType').val(), 
-        quantity:$('#Editquantity').val(), 
-
+        bloodName:$('#EditbloodType').val()
+       
 
         
     }
@@ -174,7 +121,7 @@ $('#EditbloodTyp').on('submit', function(e){
 ////.......Remove////////////////
 
 function delete_data(id){
-	let deletSellerUrl =`http://localhost:8080/api/blood/${id}`;
+	let deletSellerUrl =`http://localhost:3030/api/blood/${id}`;
 
     Helper. DeleterData(deletSellerUrl ,function(){
         alert('Remov');
@@ -187,7 +134,7 @@ function delete_data(id){
 
 
  function showAllStates(){
-    let StateUrl="http://localhost:8080/api/states/";
+    let StateUrl="http://localhost:3030/api/state/";
     Helper.GetterData(StateUrl, function (data) {
     //   console.log(data);
       $('#StatData').empty();
@@ -200,16 +147,17 @@ function delete_data(id){
                     <td>${element.stateName}</td>
                     
                     <td> 
-                    <button type="button" class="btn btn" onClick=" get_seller_data(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModal">
+                    <button type="button" class="btn " onClick="EditStates(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
                     <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
 
                    <td>
-                       <button type="button" class="btn" onClick=" delete_seller_data(${element.id})" data-bs-toggle="modal"  >
+                       <button type="button" class="btn " onClick=" delete_data_State(${element.id})" data-bs-toggle="modal"  >
                        <i class="bi bi-trash"></i>
                    </button>
                    </td>
+
 
         </tr>`)
        })
@@ -220,7 +168,7 @@ function delete_data(id){
  // ............... Add New States..................
 $('#StateData').on('submit', function(e){
      
-    let SPost=stateURL; 
+    let SPost="http://localhost:3030/api/state/";
     
     var States= {
         stateName : $('#Name').val(), 
@@ -233,73 +181,68 @@ $('#StateData').on('submit', function(e){
 }
 )
 
+////// EditState//////////////
 
-// ...............Read All donor..................
-function showAlldonors(){
-    let donorsUrl=donerURL;
-    Helper.GetterData(donorsUrl, function (data) {
+function EditStates(id){
+    let StateUrl=`http://localhost:3030/api/state/${id}`;
+    Helper.GetterData(StateUrl, function (data) {
     //   console.log(data);
-      $('#donordata').empty();
-       data.forEach(element => {      
-        $('#donordata').append(`
-        <tr>
-                    <td>${element.id}</td>
-                    <td>${element.name}</td>
-                    <td>${element.phone}</td>
-                    <td>${element.brithDate}</td>
-                    <td>${element.address}</td>
-                    <td>${element.weight}</td>
-                    <td>${element.bloodName}</td>
-                    <td>${element.stateName}</td>
-                    <td>${element.userName}</td>
+     
 
+            
+              $('#editId').val(data.id); 
+              $('#EditName').val(data.stateName);   
                     
-                    <td> 
-                    <button type="button" class="class="feather feather-edit" onClick=" get_seller_data(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModal">
-                     Edit
-                   </button>
-                   </td>
 
-                   <td>
-                       <button type="button" class="btn btn-danger" onClick=" delete_seller_data(${element.id})" data-bs-toggle="modal"  >
-                         Delete
-                   </button>
-                   </td>
+    
+    
+    })
+};   
 
-        </tr>`)
-       });
+$('#EditStateData').on('submit', function(e){
+  var  id=$('#editId').val();
+    let SPost="http://localhost:3030/api/state/";
+    
+    var States= {
+       id:$('#editId').val(),
+       stateName:$('#EditName').val()
+        
+    }
+        
+        Helper.PosterData(SPost, States, function(){
+            alert(' Registered');
     });
 }
+)
 
-// ............... Add New States..................
-// $('#Donordata').on('submit', function(e){
-//     e.preventDefault();
-//     let SPost="http://localhost:360/api/donors/"; 
-    
-//     var doners= {
-//         name : $('#name').val(), 
-//         phone : $('#phone').val(), 
-//         brithDate : $('#brithDate').val(), 
-//         address : $('#address').val(), 
-//         weight : $('#Weight').val(), 
-//         state_id:$("#Name").val(),
-//         blood_id:$("#BloodType").val(),
-//         user_id:$("#User").val()
 
-//     }
-        
-//         Helper.PosterData(SPost, doners, function(){
-//             alert(' Registered');
-//     });
-// }
-// )
+function delete_data_State(id){
+	let deletUrl =`http://localhost:3030/api/state/${id}`;
+
+    Helper. DeleterData(deletUrl ,function(){
+        alert('Remov');
+        window.location.href = "states.html";
+})
+
+}
 
 
 
- // ...............Read All User..................
- 
+
+
+
+
+
+
+
+
+
+
+
+// ............showAllUser............
+
  function showAllUser(){
-    let UserUrl="http://localhost:8080/api/users/";
+   
     
     Helper.GetterData(UserUrl, function (data) {
       console.log(data);
@@ -309,16 +252,16 @@ function showAlldonors(){
         <tr>
                     <td>${element.id}</td>
                     <td>${element.email}</td>
-                    <td>${element.userName}</td>
+                    <td>${element.username}</td>
                     <td>${element.password}</td>
                     <td>${element.status}</td>
                     
-                    <td>${element.role}</td>
+                    <td>${element.role.role_name}</td>
                     
 
                     
                     <td> 
-                    <button type="button" class="btn btn" onClick=" EditbloodType(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <button type="button" class="btn btn" onClick=" (${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
                     <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
@@ -334,38 +277,61 @@ function showAlldonors(){
     });
 }; 
 
-// ............... Add New User ..................
-$('#userdata').on('submit', function(e){
-    let RoleUrl="http://localhost:8080/api/role/";
 
+const RoleSelct=[];
+
+function showAllRolesSelect(){
+    let RoleUr="http://localhost:3030/api/role/";
+    Helper.GetterData(RoleUr, function (data) {
      
-    let Userdat="http://localhost:360/api/users/"; 
-    
-    
-    var Userdata= {
-         
-        email:$('#email').val(), 
-        userName:$('#userName').val(), 
-        password:$('#password').val(), 
-        status:$('#status').val(),
-        role:{id:$("#role_name").val()},
+        data.map((item) => {
+            $('#role_name').append('<option value='+item.id+'>'+item.role_name+'</option>');
+            RoleSelct.push(item);
+          });
 
+        
        
-        // "id","role_name","role_id",
-        
-    }
-        
-        Helper.PosterData(Userdat,Userdata,function(){
-            alert('Registered');
     });
-     
+};   
 
-}
-)
+// ............... Add New User ..................
+
+
+    $('#userdataa').on('submit', function(e){
+        
+    
+        let RoleUr="http://localhost:3030/api/role/";
+
+        let Userdat="http://localhost:3030/api/user/"; 
+        
+        
+        var Userdata= {
+             
+            email:$('#email').val(), 
+            username:$('#userName').val(), 
+            password:$('#password').val(), 
+            status:$('#status').val(),
+            role_id:$("#role_name ").val()
+    
+           
+            // "id","role_name","role_id",
+            
+        }
+            
+            Helper.PosterData(Userdat,Userdata,RoleUr,function(){
+                alert('Registered');
+        });
+         
+    
+    }
+    );
+
+
+
 
 
 function showAllRole(){
-    let RoleUrl="http://localhost:8080/api/role/";
+    let RoleUrl="http://localhost:3030/api/role/";
     Helper.GetterData(RoleUrl, function (data) {
       console.log(data);
       $('#RoleData').empty();
@@ -378,13 +344,13 @@ function showAllRole(){
                     <td>${element.role_name}</td>
                     
                     <td> 
-                    <button type="button" class="btn btn" onClick=" EditbloodType(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <button type="button" class="btn btn" onClick="EditRole(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
                     <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
 
                    <td>
-                       <button type="button" class="btn" onClick=" delete_data(${element.id})" data-bs-toggle="modal"  >
+                       <button type="button" class="btn" onClick=" delete_data_Role(${element.id})" data-bs-toggle="modal"  >
                        <i class="bi bi-trash"></i>
                    </button>
                    </td>
@@ -398,7 +364,7 @@ function showAllRole(){
 // ............... Add New Role.................
 $('#RolData').on('submit', function(e){
      
-    let RoleUrl="http://localhost:8080/api/role/"; 
+    let RoleUrl="http://localhost:3030/api/role/"; 
     
     var role= {
         role_name:$('#role_name').val(), 
@@ -411,3 +377,169 @@ $('#RolData').on('submit', function(e){
 }
 )
 
+
+
+
+function EditRole(id){
+    let RoleUrl=`http://localhost:3030/api/role/${id}`;
+    Helper.GetterData(RoleUrl, function (data) {
+      console.log(data);
+     
+
+            
+              $('#editId').val(data.id); 
+              $('#Editname').val(data.role_name);   
+                    
+
+    
+    
+    })
+};   
+
+$('#EditRoleData').on('submit', function(e){
+  var  id=$('#editId').val();
+    let edit="http://localhost:3030/api/role/";
+    
+    var Role= {
+       id:$('#editId').val(),
+       role_name:$('#Editname').val()
+        
+    }
+        
+        Helper.PosterData(edit,Role, function(){
+            alert(' Update');
+    });
+}
+)
+
+
+function delete_data_Role(id){
+	let deletUrl =`http://localhost:3030/api/role/${id}`;
+
+    Helper. DeleterData(deletUrl ,function(){
+        alert('Remov');
+        window.location.href = "role.html";
+})
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//...................Hospital..............//
+
+
+function showAllHospital(){
+    let HospitalUrl="http://localhost:3030/api/hospital/";
+    Helper.GetterData(HospitalUrl, function (data) {
+      console.log(data);
+      $('#HospitalData').empty();
+       data.forEach(element => {      
+        $('#HospitalData').append(`
+        <tr>
+
+            
+                    <td>${element.id}</td>
+                    <td>${element.name}</td>
+                    <td>${element.location}</td>
+                    <td>${element.status}</td>
+                    
+                    <td> 
+                    <button type="button" class="btn btn" onClick="EditHospital(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <i class="bi bi-box-arrow-in-down-left"></i>
+                   </button>
+                   </td>
+
+                   <td>
+                       <button type="button" class="btn" onClick=" delete_data_hospital(${element.id})" data-bs-toggle="modal"  >
+                       <i class="bi bi-trash"></i>
+                   </button>
+                   </td>
+
+        </tr>`)
+       })
+    });
+};   
+
+
+// ............... Add New Role.................
+$('#HospitalsData').on('submit', function(e){
+     
+    let HospitalUrl="http://localhost:3030/api/hospital/";
+    
+    var role= {
+        
+        
+        name:$('#name').val(), 
+        location:$('#location').val(), 
+        status:$('#status').val(), 
+        
+    }
+        
+        Helper.PosterData(HospitalUrl, role, function(){
+            alert(' Registered');
+    });
+}
+)
+
+
+
+
+function EditHospital(id){
+    let dataurl=`http://localhost:3030/api/hospital/${id}`;
+    Helper.GetterData(dataurl, function (data) {
+      console.log(data);
+     
+
+            
+              $('#editId').val(data.id); 
+              $('#Editname').val(data.name);  
+              $('#Editlocation').val(data.location);  
+              $('#Editstatus').val(data.status);   
+                    
+
+    
+    
+    })
+};   
+
+$('#EditHospital').on('submit', function(e){
+  var  id=$('#editId').val();
+    let edit="http://localhost:3030/api/hospital/";
+    
+    var data= {
+       id:$('#editId').val(),
+       name:$('#Editname').val(),
+       location:$('#Editlocation').val(),
+       status:$('#Editstatus').val()
+    
+        
+    }
+        
+        Helper.PosterData(edit,data, function(){
+            alert(' Update');
+    });
+}
+)
+
+
+function delete_data_hospital(id){
+	let dataurl=`http://localhost:3030/api/hospital/${id}`;
+
+    Helper. DeleterData(dataurl ,function(){
+        alert('Remov');
+        window.location.href = "hospitals.html";
+})
+
+}

@@ -261,16 +261,12 @@ function delete_data_State(id){
 
                     
                     <td> 
-                    <button type="button" class="btn btn" onClick=" (${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <button type="button" class="btn btn-outline-warning" onClick="updateUser(${element.id})" data-bs-toggle="modal"  data-bs-target="#edituserModal">
                     <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
 
-                   <td>
-                       <button type="button" class="btn" onClick=" delete_data(${element.id})" data-bs-toggle="modal"  >
-                       <i class="bi bi-trash"></i>
-                   </button>
-                   </td>
+                   
 
         </tr>`)
        })
@@ -279,6 +275,7 @@ function delete_data_State(id){
 
 
 const RoleSelct=[];
+const up_RoleSelct=[];
 
 function showAllRolesSelect(){
     let RoleUr="http://localhost:3030/api/role/";
@@ -286,7 +283,9 @@ function showAllRolesSelect(){
      
         data.map((item) => {
             $('#role_name').append('<option value='+item.id+'>'+item.role_name+'</option>');
+            $('#up-role_name').append('<option value='+item.id+'>'+item.role_name+'</option>');
             RoleSelct.push(item);
+            up_RoleSelct.push(item);
           });
 
         
@@ -294,6 +293,52 @@ function showAllRolesSelect(){
     });
 };   
 
+
+
+
+function updateUser(id){
+    console.log("called...");
+    let userUrl=`http://localhost:3030/api/user/${id}`;
+    Helper.GetterData(userUrl, function (data) {
+        $("#up-userID ").val(data.id);
+        $('#up-email').val(data.email)
+        $('#up-userName').val(data.username)
+        $('#up-password').val(data.password)
+        $('#up-status').val(data.status)
+        $("#up-role_name ").val(data.role.role_name)
+
+
+       
+
+     })
+
+
+}
+
+$("#edituserForm").on('submit',editThiSUser)
+
+function editThiSUser(){
+
+    let RoleUr="http://localhost:3030/api/role/";
+
+    let Userdat="http://localhost:3030/api/user/"; 
+
+    var up_Userdata= {
+        id: $("#up-userID ").val(),
+        email:$('#up-email').val(), 
+        username:$('#up-userName').val(), 
+        password:$('#up-password').val(), 
+        status:$('#up-status').val(),
+        role:{
+            id:$("#up-role_name ").val()
+        } 
+    }
+    Helper.PosterData(Userdat,up_Userdata,RoleUr,function(){
+        // alert('Registered');
+});
+
+    
+}
 // ............... Add New User ..................
 
 
@@ -311,10 +356,12 @@ function showAllRolesSelect(){
             username:$('#userName').val(), 
             password:$('#password').val(), 
             status:$('#status').val(),
-            role_id:$("#role_name ").val()
+            role:{
+                id:$("#role_name ").val()
+            }
     
            
-            // "id","role_name","role_id",
+            
             
         }
             

@@ -43,4 +43,11 @@ public class donationController {
     public void deleteThis(@PathVariable Long id){
         _service.deleteBy(id);
     }
+
+    @GetMapping("/total/")
+    public int GetTotal(){
+
+        return  _service.getTotal();
+
+    }
 }

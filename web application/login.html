@@ -21,21 +21,22 @@
       
                     <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                     <p class="text-white-50 mb-5">Please enter your login and password!</p>
-      
-                    <div class="form-outline form-white mb-4">
-                      <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                      <label class="form-label" for="typeEmailX">Email</label>
-                    </div>
-      
-                    <div class="form-outline form-white mb-4">
-                      <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                      <label class="form-label" for="typePasswordX">Password</label>
-                    </div>
-      
-                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-      
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-      
+
+                    <form   id="loginForm">
+                        <div class="form-outline form-white mb-4">
+                        <input type="text" id="typeEmailX" placeholder="username" class="form-control form-control-lg" />
+                        <!-- <label class="form-label" for="typeEmailX">Username</label> -->
+                        </div>
+        
+                        <div class="form-outline form-white mb-4">
+                            <!-- <label class="form-label" for="typePasswordX">Password</label> -->
+                        <input type="password" id="typePasswordX" placeholder="enter password" class="form-control form-control-lg" />
+                        </div>
+        
+                        <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+        
+                        <button class="btn btn-outline-light btn-lg px-5" id="btn-log" type="button">Login</button>
+                    </form>
                     <div class="d-flex justify-content-center text-center mt-4 pt-1">
                       <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
                       <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
@@ -60,33 +61,51 @@
 
   <script src="./dist/jquery.js"></script>
   <script >
-const uri = "http://localhost:3030/api/user/"
+const uri = "http://localhost:3030/api/user/login/"
+
+let local = window.localStorage;
+let session = window.sessionStorage;
 
 $( document ).ready(function() {
     console.log( "ready!" );
 
 
 
-    $("#RolData").on('submit', function(){
-
-        AddNew()
+    $("#btn-log").on('click', function(){
+       
+        login()
 
     })
+
+
+    
 
 })
 
 function login(){
+    const userN = $("#typeEmailX").val();
+    const pass = $("#typePasswordX").val();
+
 
     $.ajax({  
-        url: uri,  
+        url: uri+`${userN}/${pass}`,  
         type: 'GET',  
         dataType: 'json',  
         success: function (data ) {  
-            //console.log(data);
+            console.log(data);
             $.each(data, function(idx , item){
-                console.log(item);
+
+            local.setItem("user",JSON.stringify(item))
+
+            window.location.replace("./index.html")
+            
             })
-             }
+            
+             },  
+        error: function (request , msg , error) {  
+            console.log('Error in Operation');  
+            alert("error")
+        }  
 
             })
 }

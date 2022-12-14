@@ -37,4 +37,11 @@ public class donorController {
     public void deleteThis(@PathVariable Long id){
         _service.deleteBy(id);
     }
+
+    @GetMapping("/donors/")
+    public Long GetNumberOfDonors(){
+
+        return  _service.numOfDonors();
+
+    }
 }

@@ -36,4 +36,11 @@ public class recipientController {
         _service.deleteBy(id);
     }
 
+    @GetMapping("/recipients/")
+    public Long GetNumberOfRecipients(){
+
+        return  _service.numOfRecipients();
+
+    }
+
 }

@@ -41,16 +41,20 @@ public class userService {
         userDTO[] dtos = new userDTO[1];
 
         for (int i = 0; i < dtos.length; i++) {
+            if(user !=null) {
+                userDTO dtoArray = new userDTO();
+                dtoArray.setId(user.getId());
+                dtoArray.setUsername(user.getUsername());
+                dtoArray.setStatus(user.getStatus());
+                dtoArray.setRol(user.getRole().getRole_name());
 
-            userDTO dtoArray = new userDTO();
-            dtoArray.setId(user.getId());
-            dtoArray.setUsername(user.getUsername());
-            dtoArray.setStatus(user.getStatus());
-            dtoArray.setRol(user.getRole().getRole_name());
-
-            dtos[i] = dtoArray;
+                dtos[i] = dtoArray;
+            }
         }
+
         return Arrays.stream(dtos).toList();
+
+
     }
 
 

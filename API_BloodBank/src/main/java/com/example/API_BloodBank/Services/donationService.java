@@ -34,4 +34,8 @@ public class donationService {
 
         return  num;
     }
+
+    public int getTotal(){
+        return _repo.getTotalDonations();
+    }
 }

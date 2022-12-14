@@ -34,5 +34,9 @@ public class recordsService {
         return  num;
     }
 
+    public int getTotal(){
+        return _repo.getTotalRecord();
+    }
+
     
 }

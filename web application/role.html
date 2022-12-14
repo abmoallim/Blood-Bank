@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Zoobe</title>
     
     <link rel="stylesheet" href="assets/css/main/app.css">
     <link rel="stylesheet" href="assets/css/main/app-dark.css">
@@ -118,7 +118,7 @@
                                                     <div class="col-12">
                                                         
                                                         <div class="form-group">
-                                                            <label for="first-name-vertical">First Name</label>
+                                                            <label for="first-name-vertical">Role Name</label>
                                                             <input type="text" id="role_name"
                                                                 class="form-control" name="role_name"
                                                                 placeholder=" Name">
@@ -254,6 +254,43 @@
             </div>
         </div>
         <!-- end container -->
+
+        <div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Role</h5>
+                  <button type="button" class="close cls" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editroleForm">
+                        <div class="row g-3 align-items-center">
+        
+                            <div class="col-12">
+                                <label for="up-Dname"
+                                    class="col-form-label">Name</label>
+                                <input type="text" id="up-role" required class="form-control" />
+                                <input type="hidden" id="up-roleID" required class="form-control" />
+                            </div>
+        
+                            
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary cls"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Applay Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+              </div>
+            </div>
+          </div>
     </section>
     <!-- ========== section end ========== -->
 
@@ -279,6 +316,9 @@
     </div>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="./dist/jquery.js"></script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <!-- <script src="./js/role.js"></script> -->
     <script src="./js/js.js"></script>
     <script src="./Helper/Helper.js"></script>
 

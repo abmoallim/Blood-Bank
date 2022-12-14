@@ -74,7 +74,7 @@ $('#bloodtype').on('submit', function(e){
     }
         
         Helper.PosterData( BloodTypePost,BloodType, function(){
-            alert(' Registered');
+            // // // alert('Registered');
     });
 }
 )
@@ -113,7 +113,7 @@ $('#EditbloodTyp').on('submit', function(e){
     }
         
         Helper.PosterData( BloodTypePost,BloodType, function(){
-            alert(' Update');
+            // // alert('Update');
     });
 }
 )
@@ -124,7 +124,7 @@ function delete_data(id){
 	let deletSellerUrl =`http://localhost:3030/api/blood/${id}`;
 
     Helper. DeleterData(deletSellerUrl ,function(){
-        alert('Remov');
+        // alert('Remov');
         window.location.href = "BloodType.html";
 })
 
@@ -176,7 +176,7 @@ $('#StateData').on('submit', function(e){
     }
         
         Helper.PosterData(SPost, States, function(){
-            alert(' Registered');
+            // // // alert('Registered');
     });
 }
 )
@@ -210,7 +210,7 @@ $('#EditStateData').on('submit', function(e){
     }
         
         Helper.PosterData(SPost, States, function(){
-            alert(' Registered');
+            // // // alert('Registered');
     });
 }
 )
@@ -220,7 +220,7 @@ function delete_data_State(id){
 	let deletUrl =`http://localhost:3030/api/state/${id}`;
 
     Helper. DeleterData(deletUrl ,function(){
-        alert('Remov');
+        // alert('Remov');
         window.location.href = "states.html";
 })
 
@@ -319,7 +319,7 @@ function showAllRolesSelect(){
         }
             
             Helper.PosterData(Userdat,Userdata,RoleUr,function(){
-                alert('Registered');
+                // alert('Registered');
         });
          
     
@@ -344,7 +344,7 @@ function showAllRole(){
                     <td>${element.role_name}</td>
                     
                     <td> 
-                    <button type="button" class="btn btn" onClick="EditRole(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <button type="button" class="btn btn" onClick="updateRole(${element.id})" ">
                     <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
@@ -361,6 +361,24 @@ function showAllRole(){
 };   
 
 
+function updateRole(id){
+
+    $("#editRoleModal").modal("show")
+
+    let RoleUrl="http://localhost:3030/api/role/"+id;
+    Helper.GetterData(RoleUrl, function (data) { 
+
+        $('#up-roleID').val(data.id); 
+              $('#up-role').val(data.role_name); 
+
+        
+
+     })
+
+
+
+}
+
 // ............... Add New Role.................
 $('#RolData').on('submit', function(e){
      
@@ -372,7 +390,7 @@ $('#RolData').on('submit', function(e){
     }
         
         Helper.PosterData(RoleUrl, role, function(){
-            alert(' Registered');
+            // // // // alert('Registered');
     });
 }
 )
@@ -396,18 +414,18 @@ function EditRole(id){
     })
 };   
 
-$('#EditRoleData').on('submit', function(e){
+$('#editroleForm').on('submit', function(e){
   var  id=$('#editId').val();
     let edit="http://localhost:3030/api/role/";
     
     var Role= {
-       id:$('#editId').val(),
-       role_name:$('#Editname').val()
+       id:$('#up-roleID').val(),
+       role_name:$('#up-role').val()
         
     }
         
         Helper.PosterData(edit,Role, function(){
-            alert(' Update');
+            // // alert('Update');
     });
 }
 )
@@ -417,7 +435,7 @@ function delete_data_Role(id){
 	let deletUrl =`http://localhost:3030/api/role/${id}`;
 
     Helper. DeleterData(deletUrl ,function(){
-        alert('Remov');
+        // alert('Remov');
         window.location.href = "role.html";
 })
 
@@ -488,7 +506,7 @@ $('#HospitalsData').on('submit', function(e){
     }
         
         Helper.PosterData(HospitalUrl, role, function(){
-            alert(' Registered');
+            // // // alert('Registered');
     });
 }
 )
@@ -528,7 +546,7 @@ $('#EditHospital').on('submit', function(e){
     }
         
         Helper.PosterData(edit,data, function(){
-            alert(' Update');
+            // // alert('Update');
     });
 }
 )
@@ -538,7 +556,7 @@ function delete_data_hospital(id){
 	let dataurl=`http://localhost:3030/api/hospital/${id}`;
 
     Helper. DeleterData(dataurl ,function(){
-        alert('Remov');
+        // alert('Remov');
         window.location.href = "hospitals.html";
 })
 

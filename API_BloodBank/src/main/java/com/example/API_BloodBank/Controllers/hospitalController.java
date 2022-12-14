@@ -33,4 +33,11 @@ public class hospitalController {
     public void deleteThis(@PathVariable Long id){
         _service.deleteBy(id);
     }
+
+    @GetMapping("/hospitals/")
+    public Long GetNumberOfHospitals(){
+
+        return  _service.numOfHospitals();
+
+    }
 }

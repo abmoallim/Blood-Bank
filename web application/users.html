@@ -18,6 +18,18 @@
     $(function(){
       $("#sidebarme").load("sidebar.html"); 
     });
+
+    let session = window.sessionStorage;
+    let local = window.localStorage;
+    user = "none";
+    if(local.getItem("user")){
+        user = JSON.parse(local.getItem("user"))
+    }
+    console.log(user);
+
+    if(user === "none"){
+        window.location.replace("./login.html")
+    }
     </script> 
 
 </head>
@@ -79,7 +91,7 @@
                                                             <th><h6>status</h6></th>
                                                             <th><h6>Role</h6></th>
                                                             <th><h6>Edit</h6></th>
-                                                            <th><h6>Delete</h6></th>
+                                                            
 
                                                           
                                                         </tr>
@@ -101,7 +113,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">
-                                            User
+                                            Add new
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -125,14 +137,14 @@
                                                             <label for="frist-name-vertical">email</label>
                                                             <input type="email" id="email"
                                                                 class="form-control" name="email"
-                                                                placeholder="userName">
+                                                                placeholder="email">
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="col-12">
                                                         
                                                         <div class="form-group">
-                                                            <label for="email-id-vertical">userName</label>
+                                                            <label for="email-id-vertical">username</label>
                                                             <input type="text" id="userName"
                                                                 class="form-control" name="userName"
                                                                 placeholder="email">
@@ -152,9 +164,13 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="frist-name-vertical">Status</label>
-                                                            <input type="text" id="status"
-                                                                class="form-control" name="status"
-                                                                placeholder="status">
+                                                            
+
+                                                                <select class="form-control" name="" id="status">
+                                                                    <option value="Active">Active</option>
+                                                                    <option value="In Active">In active</option>
+                                                                    <option value="Pendding">Pendding</option>
+                                                                </select>
                                                         </div>
                                                     </div>
 
@@ -163,20 +179,7 @@
                                                         <select name="" id="role_name" required class="form-select">
                                                             
                                                         </select>
-                                                    
-
-                                                   
-
-                                                    <!-- <div class="col-12">
-                                                      
-                                                        <label for="inputblood_id" class="col-form-label">BloodType</label>
-                                                        <select name="" id="blood_id" required class="form-select">
-                                                            <option value="" disabled selected>Choose option</option>
-                                                        </select>
-                                                    </div> -->
-
-                                                   
-                                                </div>
+                                                    </div>
 
                                             </div>
                                             <div class="modal-footer">
@@ -216,6 +219,84 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="edituserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">User</h5>
+                  <button type="button" class="close cls" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edituserForm">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="frist-name-vertical">email</label>
+                                <input type="email" id="up-email"
+                                    class="form-control" name="email"
+                                    placeholder="userName">
+                                    <input type="hidden" id="up-userID"
+                                    class="form-control" name="up-userID"
+                                    >
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            
+                            <div class="form-group">
+                                <label for="email-id-vertical">username</label>
+                                <input type="text" id="up-userName"
+                                    class="form-control" name="userName"
+                                    placeholder="email">
+                                </div>
+                        </div>
+                        
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="password-vertical">Password</label>
+                                <input type="password" id="up-password"
+                                    class="form-control" name="password"
+                                    placeholder="Password">
+                            </div>
+                        </div>
+                    
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="frist-name-vertical">Status</label>
+                                
+
+                                    <select class="form-control" name="" id="up-status">
+                                        <option value="Active">Active</option>
+                                        <option value="In Active">In active</option>
+                                        <option value="Pendding">Pendding</option>
+                                    </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputrole" class="col-form-label">Role</label>
+                            <select name="" id="up-role_name" required class="form-select">
+                                
+                            </select>
+                        </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary cls"
+                                data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Applay Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+              </div>
+            </div>
+          </div>
         <!-- end container -->
     </section>
     <!-- ========== section end ========== -->

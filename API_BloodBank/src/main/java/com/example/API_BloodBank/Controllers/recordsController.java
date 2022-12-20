@@ -41,4 +41,11 @@ public class recordsController {
 
     }
 
+    @GetMapping("/total/")
+    public int GetTotal(){
+
+        return  _service.getTotal();
+
+    }
+
 }

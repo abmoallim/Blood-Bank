@@ -1,5 +1,6 @@
 package com.example.API_BloodBank.Controllers;
 
+import com.example.API_BloodBank.DTO.userDTO;
 import com.example.API_BloodBank.Models.user;
 import com.example.API_BloodBank.Services.userService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,17 @@ public class userController {
     public user GetAll(@PathVariable Long id){
         return _service.getByID(id);
     }
+
+
+    @GetMapping("/login/{username}/{password}")
+    public List<userDTO> byUserName(@PathVariable String username, @PathVariable String password){
+        return _service.getUserByUsername(username,password);
+    }
+
+
+
+
+
 
     @PostMapping("/")
     public user save(@RequestBody user User){

@@ -283,7 +283,7 @@ function updateDonation(id){
          
             success: function (data ) {
               console.log("Successfully added");
-             alert("AAA")
+         
               window.location.reload();  
             },  
             error: function (request , msg , error) {  

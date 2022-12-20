@@ -24,6 +24,18 @@
     $(function(){
       $("#sidebarme").load("sidebar.html"); 
     });
+
+    let session = window.sessionStorage;
+    let local = window.localStorage;
+    user = "none";
+    if(local.getItem("user")){
+        user = JSON.parse(local.getItem("user"))
+    }
+    console.log(user);
+
+    if(user === "none"){
+        window.location.replace("./login.html")
+    }
     </script> 
 
 </head>
@@ -190,7 +202,7 @@
                         <label for="up-Dname"
                             class="col-form-label">Name</label>
                         <input type="text" id="up-Dname" required class="form-control" />
-                        <input type="text" id="up-DID" required class="form-control" />
+                        <input type="hidden" id="up-DID" required class="form-control" />
                     </div>
 
                     <div class="col-12">

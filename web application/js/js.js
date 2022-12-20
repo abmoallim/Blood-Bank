@@ -74,7 +74,7 @@ $('#bloodtype').on('submit', function(e){
     }
         
         Helper.PosterData( BloodTypePost,BloodType, function(){
-            alert(' Registered');
+            // // // alert('Registered');
     });
 }
 )
@@ -113,7 +113,7 @@ $('#EditbloodTyp').on('submit', function(e){
     }
         
         Helper.PosterData( BloodTypePost,BloodType, function(){
-            alert(' Update');
+            // // alert('Update');
     });
 }
 )
@@ -124,7 +124,7 @@ function delete_data(id){
 	let deletSellerUrl =`http://localhost:3030/api/blood/${id}`;
 
     Helper. DeleterData(deletSellerUrl ,function(){
-        alert('Remov');
+        // alert('Remov');
         window.location.href = "BloodType.html";
 })
 
@@ -176,7 +176,7 @@ $('#StateData').on('submit', function(e){
     }
         
         Helper.PosterData(SPost, States, function(){
-            alert(' Registered');
+            // // // alert('Registered');
     });
 }
 )
@@ -210,7 +210,7 @@ $('#EditStateData').on('submit', function(e){
     }
         
         Helper.PosterData(SPost, States, function(){
-            alert(' Registered');
+            // // // alert('Registered');
     });
 }
 )
@@ -220,7 +220,7 @@ function delete_data_State(id){
 	let deletUrl =`http://localhost:3030/api/state/${id}`;
 
     Helper. DeleterData(deletUrl ,function(){
-        alert('Remov');
+        // alert('Remov');
         window.location.href = "states.html";
 })
 
@@ -261,16 +261,12 @@ function delete_data_State(id){
 
                     
                     <td> 
-                    <button type="button" class="btn btn" onClick=" (${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <button type="button" class="btn btn-outline-warning" onClick="updateUser(${element.id})" data-bs-toggle="modal"  data-bs-target="#edituserModal">
                     <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
 
-                   <td>
-                       <button type="button" class="btn" onClick=" delete_data(${element.id})" data-bs-toggle="modal"  >
-                       <i class="bi bi-trash"></i>
-                   </button>
-                   </td>
+                   
 
         </tr>`)
        })
@@ -279,6 +275,7 @@ function delete_data_State(id){
 
 
 const RoleSelct=[];
+const up_RoleSelct=[];
 
 function showAllRolesSelect(){
     let RoleUr="http://localhost:3030/api/role/";
@@ -286,7 +283,9 @@ function showAllRolesSelect(){
      
         data.map((item) => {
             $('#role_name').append('<option value='+item.id+'>'+item.role_name+'</option>');
+            $('#up-role_name').append('<option value='+item.id+'>'+item.role_name+'</option>');
             RoleSelct.push(item);
+            up_RoleSelct.push(item);
           });
 
         
@@ -294,6 +293,52 @@ function showAllRolesSelect(){
     });
 };   
 
+
+
+
+function updateUser(id){
+    console.log("called...");
+    let userUrl=`http://localhost:3030/api/user/${id}`;
+    Helper.GetterData(userUrl, function (data) {
+        $("#up-userID ").val(data.id);
+        $('#up-email').val(data.email)
+        $('#up-userName').val(data.username)
+        $('#up-password').val(data.password)
+        $('#up-status').val(data.status)
+        $("#up-role_name ").val(data.role.role_name)
+
+
+       
+
+     })
+
+
+}
+
+$("#edituserForm").on('submit',editThiSUser)
+
+function editThiSUser(){
+
+    let RoleUr="http://localhost:3030/api/role/";
+
+    let Userdat="http://localhost:3030/api/user/"; 
+
+    var up_Userdata= {
+        id: $("#up-userID ").val(),
+        email:$('#up-email').val(), 
+        username:$('#up-userName').val(), 
+        password:$('#up-password').val(), 
+        status:$('#up-status').val(),
+        role:{
+            id:$("#up-role_name ").val()
+        } 
+    }
+    Helper.PosterData(Userdat,up_Userdata,RoleUr,function(){
+        // alert('Registered');
+});
+
+    
+}
 // ............... Add New User ..................
 
 
@@ -311,15 +356,17 @@ function showAllRolesSelect(){
             username:$('#userName').val(), 
             password:$('#password').val(), 
             status:$('#status').val(),
-            role_id:$("#role_name ").val()
+            role:{
+                id:$("#role_name ").val()
+            }
     
            
-            // "id","role_name","role_id",
+            
             
         }
             
             Helper.PosterData(Userdat,Userdata,RoleUr,function(){
-                alert('Registered');
+                // alert('Registered');
         });
          
     
@@ -344,7 +391,7 @@ function showAllRole(){
                     <td>${element.role_name}</td>
                     
                     <td> 
-                    <button type="button" class="btn btn" onClick="EditRole(${element.id})" data-bs-toggle="modal"  data-bs-target="#exampleModa">
+                    <button type="button" class="btn btn" onClick="updateRole(${element.id})" ">
                     <i class="bi bi-box-arrow-in-down-left"></i>
                    </button>
                    </td>
@@ -361,6 +408,24 @@ function showAllRole(){
 };   
 
 
+function updateRole(id){
+
+    $("#editRoleModal").modal("show")
+
+    let RoleUrl="http://localhost:3030/api/role/"+id;
+    Helper.GetterData(RoleUrl, function (data) { 
+
+        $('#up-roleID').val(data.id); 
+              $('#up-role').val(data.role_name); 
+
+        
+
+     })
+
+
+
+}
+
 // ............... Add New Role.................
 $('#RolData').on('submit', function(e){
      
@@ -372,7 +437,7 @@ $('#RolData').on('submit', function(e){
     }
         
         Helper.PosterData(RoleUrl, role, function(){
-            alert(' Registered');
+            // // // // alert('Registered');
     });
 }
 )
@@ -396,18 +461,18 @@ function EditRole(id){
     })
 };   
 
-$('#EditRoleData').on('submit', function(e){
+$('#editroleForm').on('submit', function(e){
   var  id=$('#editId').val();
     let edit="http://localhost:3030/api/role/";
     
     var Role= {
-       id:$('#editId').val(),
-       role_name:$('#Editname').val()
+       id:$('#up-roleID').val(),
+       role_name:$('#up-role').val()
         
     }
         
         Helper.PosterData(edit,Role, function(){
-            alert(' Update');
+            // // alert('Update');
     });
 }
 )
@@ -417,7 +482,7 @@ function delete_data_Role(id){
 	let deletUrl =`http://localhost:3030/api/role/${id}`;
 
     Helper. DeleterData(deletUrl ,function(){
-        alert('Remov');
+        // alert('Remov');
         window.location.href = "role.html";
 })
 
@@ -488,7 +553,7 @@ $('#HospitalsData').on('submit', function(e){
     }
         
         Helper.PosterData(HospitalUrl, role, function(){
-            alert(' Registered');
+            // // // alert('Registered');
     });
 }
 )
@@ -528,7 +593,7 @@ $('#EditHospital').on('submit', function(e){
     }
         
         Helper.PosterData(edit,data, function(){
-            alert(' Update');
+            // // alert('Update');
     });
 }
 )
@@ -538,7 +603,7 @@ function delete_data_hospital(id){
 	let dataurl=`http://localhost:3030/api/hospital/${id}`;
 
     Helper. DeleterData(dataurl ,function(){
-        alert('Remov');
+        // alert('Remov');
         window.location.href = "hospitals.html";
 })
 

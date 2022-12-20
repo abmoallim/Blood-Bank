@@ -12,12 +12,30 @@
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
     
 <link rel="stylesheet" href="assets/css/shared/iconly.css">
+<link rel="stylesheet" href="./assets/css/pages/fontawesome.css">
 
 <script src="./assets/js/jquery.js"></script>
 <script> 
+
+
+
+
     $(function(){
       $("#sidebarme").load("sidebar.html"); 
     });
+
+
+    let session = window.sessionStorage;
+    let local = window.localStorage;
+    user = "none";
+    if(local.getItem("user")){
+        user = JSON.parse(local.getItem("user"))
+    }
+    console.log(user);
+
+    if(user === "none"){
+        window.location.replace("./login.html")
+    }
     </script> 
 
 </head>
@@ -39,7 +57,7 @@
 </div>
 <div class="page-content">
     <section class="row">
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-lg-12">
             <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
@@ -47,12 +65,12 @@
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                     <div class="stats-icon purple mb-2">
-                                        <i class="iconly-boldShow"></i>
+                                        <i class="fa fa-users"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Donations</h6>
-                                    <h6 class="font-extrabold mb-0" id="NumDonations">112.000</h6>
+                                    <h6 class="text-muted font-semibold">Donors</h6>
+                                    <h6 class="font-extrabold mb-0" id="NumOfDonors">112.000</h6>
                                 </div>
                             </div>
                         </div>
@@ -64,24 +82,26 @@
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                     <div class="stats-icon blue mb-2">
-                                        <i class="iconly-boldProfile"></i>
+                                        <i class="fa fa-users"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Records</h6>
-                                    <h6 class="font-extrabold mb-0" id="NumOfRecords">183.000</h6>
+                                    <h6 class="text-muted font-semibold">Receipts</h6>
+                                    <h6 class="font-extrabold mb-0" id="NumOfRecipients">183.000</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="bOut">
+                <input type="hidden" id="bIn">
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                     <div class="stats-icon green mb-2">
-                                        <i class="iconly-boldAdd-User"></i>
+                                        <i class="fa fa-hospital"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
@@ -98,12 +118,12 @@
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                     <div class="stats-icon red mb-2">
-                                        <i class="iconly-boldBookmark"></i>
+                                        <i class="fa fa-eye-dropper"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Total CC</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="font-extrabold mb-0" id="TotalCC">112</h6>
                                 </div>
                             </div>
                         </div>

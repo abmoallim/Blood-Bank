@@ -2,11 +2,15 @@ package com.example.bloodbank;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -17,81 +21,70 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bloodbank.adapters.dashboard_adapter;
+import com.example.bloodbank.urlController.urlModel;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
+public class DashboardActivity extends AppCompatActivity {
 
     ImageView btn_donate;
+    RecyclerView rv_cards_holder;
+    RecyclerView.Adapter dashboardAdapter;
 
+    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        btn_donate = findViewById(R.id.donate);
-        btn_donate.setOnClickListener(this);
+//        btn_donate = findViewById(R.id.donate);
+//        btn_donate.setOnClickListener(this);
+
+        rv_cards_holder = findViewById(R.id.cards_holder);
+
+        GridLayoutManager gridLayout = new GridLayoutManager(getApplicationContext(), 2);
+        rv_cards_holder.setLayoutManager(gridLayout);
+
+        getDashboardData();
 
 
+    }
 
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(DashboardActivity.this);
-        String url = "http://192.168.100.100:5000/TotalDonors";
-
-        // Request a string response from the provided URL.
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+    private void getDashboardData(){
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, urlModel.dashboard_data, null, new Response.Listener<JSONArray>(){
             @Override
             public void onResponse(JSONArray response) {
-                Toast.makeText(DashboardActivity.this, "Hi there", Toast.LENGTH_LONG);
+                    dashboardAdapter = new dashboard_adapter(DashboardActivity.this, response);
+                    rv_cards_holder.setAdapter(dashboardAdapter);
+
             }
-        }, new Response.ErrorListener() {
+        }, new Response.ErrorListener(){
+
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error Message", error.toString());
-            }
-        });
-        StringRequest request2 = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                // Display the first 500 characters of the response string.
-                Toast.makeText(DashboardActivity.this, response, Toast.LENGTH_LONG).show();
-            }
-            }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(DashboardActivity.this, "That didn't work!", Toast.LENGTH_LONG).show();
-                Log.d("Error Message", error.toString());
+                Log.i("Error Message", error.getMessage());
             }
         });
 
-        // Add the request to the RequestQueue.
-        queue.add(request);
-        queue.add(request2);
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-
-//
-//        toolbar=findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//
-//        getSupportActionBar().setTitle("Course Management Application");
-////        setTitle(Color.WHITE);
-//        toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
-
+        requestQueue.add(request);
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.donate:
-                Intent Donate_Intent = new Intent(DashboardActivity.this, DonationActivity.class);
-                startActivity(Donate_Intent);
-//                Toast.makeText(DashboardActivity.this, "Here we go", Toast.LENGTH_LONG).show();
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.donate:
+//                Intent Donate_Intent = new Intent(DashboardActivity.this, DonationActivity.class);
+//                startActivity(Donate_Intent);
+////                Toast.makeText(DashboardActivity.this, "Here we go", Toast.LENGTH_LONG).show();
+//                break;
+//        }
+//    }
 
 
 //    @Override

@@ -1,3 +1,21 @@
+
+
+
+
+
+$( document ).ready(function() {
+    console.log( "charts Ready" ); 
+
+	const myTimeout = setTimeout(getAllcharts, 1000);
+})
+
+function getAllcharts(){
+	let donors = document.getElementById('NumOfDonors').innerHTML
+
+}
+
+
+
 var optionsProfileVisit = {
 	annotations: {
 		position: 'back'
@@ -16,13 +34,14 @@ var optionsProfileVisit = {
 	},
 	series: [{
 		name: 'sales',
-		data: [9,20,30,20,10,20,30,20,10,20,30,20]
+		data: [9,20,30,20,10,20,30,20]
 	}],
 	colors: '#435ebe',
 	xaxis: {
-		categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
+		categories: ["Donors","Recipients","Hospitals ","Donations","Records","Jun","Jul", "Aug"],
 	},
 }
+
 let optionsVisitorsProfile  = {
 	series: [70, 30],
 	labels: ['Male', 'Female'],
@@ -114,3 +133,4 @@ chartAmerica.render();
 chartEurope.render();
 chartProfileVisit.render();
 chartVisitorsProfile.render()
+

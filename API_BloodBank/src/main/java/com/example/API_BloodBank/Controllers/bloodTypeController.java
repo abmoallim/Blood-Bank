@@ -4,6 +4,7 @@ package com.example.API_BloodBank.Controllers;
 import com.example.API_BloodBank.Models.bloodType;
 import com.example.API_BloodBank.Models.user;
 import com.example.API_BloodBank.Services.bloodTypeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,8 @@ public class bloodTypeController {
 
     @Autowired
     bloodTypeService _service;
+
+
     @GetMapping("/")
     public List<bloodType> GetAll(){
         return _service.getAll();

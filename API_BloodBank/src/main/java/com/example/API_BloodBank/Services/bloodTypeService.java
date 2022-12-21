@@ -14,6 +14,9 @@ public class bloodTypeService {
     @Autowired
     bloodTypeRepo _repo;
 
+
+
+
     public List<bloodType> getAll(){
         return _repo.findAll();
     }

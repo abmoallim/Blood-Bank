@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    tools:context=".LoginActivity">
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="80dp"
+
+        android:text="Sign In"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="30sp"
+      />
+
+
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+
+        android:hint="        UserName"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:textColorHint="#FFF"
+        android:inputType="textPersonName"
+       />
+
+
+    <EditText
+        android:id="@+id/etpassword"
+        android:layout_width="match_parent"
+        android:drawableLeft="@drawable/ic_baseline_key_24"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="#fff"
+        android:textColorHint="#FFF"
+        android:layout_marginBottom="8dp"
+
+        android:ems="10"
+        android:hint="        PASSWORD"
+        android:inputType="textPassword"
+        />
+
+
+
+    <Button
+        android:id="@+id/signin"
+        android:layout_width="match_parent"
+
+        android:background="@drawable/circlebutton"
+        android:layout_height="62dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="signin"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:paddingStart="10dp"
+        android:textColor="#ffffff"
+      />
+
+    <CheckBox
+        android:id="@+id/check"
+        android:layout_width="203dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+
+        android:text="Remember me"
+
+        android:textColor="#fff"
+        android:textSize="20sp"
+       />
+
+
+</LinearLayout>

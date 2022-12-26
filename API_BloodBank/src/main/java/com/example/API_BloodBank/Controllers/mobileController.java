@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/mobile")
+@RequestMapping("/Dashboard")
 public class mobileController {
 
     @Autowired

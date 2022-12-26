@@ -45,14 +45,37 @@ public class dashboard_adapter extends RecyclerView.Adapter<dashboard_adapter.da
             }
             else if (data.getString("icon").equals("ic_baseline_people_24")){
                 img = Integer.parseInt(String.valueOf(R.drawable.ic_baseline_people_24));
+            }
+            else if (data.getString("icon").equals("ic_baseline_people_24")){
+                img = Integer.parseInt(String.valueOf(R.drawable.ic_baseline_people_24));
+            }
 
+            else if (data.getString("icon").equals("ic_baseline_bloodtype_24")){
+                img = Integer.parseInt(String.valueOf(R.drawable.ic_baseline_bloodtype_24));
+            }
+
+            int background = 0;
+            if (data.getString("background").equals("circlebacgroundpurple")){
+                background = Integer.parseInt(String.valueOf(R.drawable.circlebacgroundpurple));
 
             }
+            else if (data.getString("background").equals("circlebackgroundgreen")){
+                background = Integer.parseInt(String.valueOf(R.drawable.circlebackgroundgreen));
+            }
+            else if (data.getString("background").equals("circlebackgroundyellow")){
+                background = Integer.parseInt(String.valueOf(R.drawable.circlebackgroundyellow));
+            }
+
+            else if (data.getString("background").equals("circlebackgroundred")){
+                background = Integer.parseInt(String.valueOf(R.drawable.circlebackgroundred));
+            }
+
 
 //            int drawalResourceId = holder.iv_hospital_img.getContext().getResources().getIdentifier(data.getString("icon"), "drawable", holder.iv_hospital_img.getContext().getPackageName());
 //            Glide.with(holder.itemView.getContext()).load(drawalResourceId).into(holder.iv_hospital_img);
 
-            holder.iv_img.setBackgroundResource(img);
+            holder.iv_img.setBackgroundResource(background);
+            holder.iv_img.setImageResource(img);
             holder.tv_name.setText(data.getString("name"));
             holder.tv_total.setText(data.getString("total"));
 
@@ -78,9 +101,6 @@ public class dashboard_adapter extends RecyclerView.Adapter<dashboard_adapter.da
             tv_name = itemView.findViewById(R.id.name);
             tv_total = itemView.findViewById(R.id.total);
             iv_img = itemView.findViewById(R.id.img);
-
-
-
 
         }
     }

@@ -59,12 +59,7 @@ public class DonationActivity extends AppCompatActivity {
                 et_date.setText(dateFormat.format(myCalendar.getTime()));
             }
         };
-        et_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DatePickerDialog(DonationActivity.this, date, myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
+        et_date.setOnClickListener(view -> new DatePickerDialog(DonationActivity.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
     }
 }

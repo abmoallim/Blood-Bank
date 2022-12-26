@@ -26,10 +26,9 @@
 
                 <ImageView
                     android:id="@+id/img"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_baseline_local_hospital_24" />
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:padding="10dp" />
 
                 <TextView
                     android:id="@+id/name"

@@ -21,6 +21,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".DonationActivity" />
+        <activity android:name=".DonorsActivity" />
+        <activity android:name=".UpdateDonorActivity" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

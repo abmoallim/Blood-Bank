@@ -8,7 +8,8 @@ let bloodTyeUrl="http://localhost:3030/api/blood/"
 $( document ).ready(function() {
     console.log( "ready!" );
     
-    GetDonors();
+    GetRecipient();
+    getAddingIfo()
 
    
 
@@ -29,12 +30,22 @@ $( document ).ready(function() {
         AddNew()
 
     })
+
+    $("#byState").on('change',function(){
+        let s_id = $("#byState").val();
+
+        GetRecipentBystate(s_id)
+        
+    })
 });
+
+
 
 function getAddingIfo(){
 
     $("#Dblood").empty()
     $("#Dstate").empty()
+    $("#byState").empty()
    
      // blood
      $.ajax({  
@@ -69,9 +80,17 @@ function getAddingIfo(){
             $("#Dstate").append(`
             <option value="" selected disabled>no state is selected</option>
                 `)
+
+                $("#byState").append(`
+            <option value="" selected disabled>Search by state</option>
+                `)
             $.each(data, function(idx , item){
                 // console.log(item);
                 $("#Dstate").append(`
+                <option value="${item.id}" > ${item.stateName} </option>
+                `)
+
+                $("#byState").append(`
                 <option value="${item.id}" > ${item.stateName} </option>
                 `)
               
@@ -176,7 +195,7 @@ function updateDonor(id){
 
 }
 
- function GetDonors(){
+ function GetRecipient(){
     
     $("#donordata").empty();
     var $list = $("#donordata");
@@ -206,6 +225,71 @@ function updateDonor(id){
                 $tr.append("<td>"+item.bloodType.bloodName+"</td>");
                
                 $tr.append("<td>"+item.state.stateName+"</td>");
+                if(item.status == "Active"){
+                  $tr.append(`<td class="  badge bg-success mt-3" >${item.status}  </td>    `);
+                }
+                else if(item.status == "Pendding"){
+                    $tr.append(`<td class=" badge bg-warning mt-3 " >${item.status} </td>`);
+                }
+                else{
+                  $tr.append(`<td class=" badge bg-danger mt-3 " >${item.status} </td>`);
+
+                }
+               
+
+                $tr.append(` <td> 
+                <button type="button" class="btn btn-info"  onclick="updateDonor(${item.id})">Update</button>
+                
+                                        
+            </td>`);
+            
+             
+                
+             
+            
+
+                $list.append($tr);
+
+            })  
+        },  
+        error: function (request , msg , error) {  
+            console.log('Error in Operation');  
+        }  
+    });
+  };
+
+
+  function GetRecipentBystate(stateid){
+    
+    $("#donordata").empty();
+    var $list = $("#donordata");
+   
+    
+      $.ajax({  
+        url: uri+`state/${stateid}`,  
+        type: 'GET',  
+        dataType: 'json',  
+        success: function (data ) {  
+            //console.log(data);
+            $.each(data, function(idx , item){
+                // console.log(item);
+                var $tr = $("<tr></tr>");
+                $tr.append("<td>"+item.id +"</td>");
+                $tr.append("<td>"+item.name+"</td>");
+                $tr.append("<td>"+item.phone +"</td>");
+
+
+                var DateToStr = (item.brithDate)
+                var bDate = new Date(DateToStr)
+
+                $tr.append("<td>"+getAge(bDate) +"</td>");
+
+            
+
+                $tr.append("<td>"+item.bloodName+"</td>");
+               
+                $tr.append("<td>"+item.stateName+"</td>");
+
                 if(item.status == "Active"){
                   $tr.append(`<td class="  badge bg-success mt-3" >${item.status}  </td>    `);
                 }
@@ -293,12 +377,12 @@ function updateDonor(id){
           // console.log(data);
           $("#editRecipentModal").modal('hide');
           window.location.reload();
-        //   GetDonors(); 
+        //   GetRecipient(); 
               
         },  
         error: function (request , msg , error) {  
             console.log('Can not post');
-            GetDonors(); 
+            GetRecipient(); 
         }  
     });
      
@@ -345,7 +429,7 @@ function updateDonor(id){
             },  
             error: function (request , msg , error) {  
                 console.log('Can not post');
-                GetDonors(); 
+                GetRecipient(); 
             }  
         }); 
     
@@ -374,13 +458,13 @@ function updateDonor(id){
           console.log("Suuceccfully deleted");
           // console.log(data);
           //window.location.reload()
-          GetDonors(); 
+          GetRecipient(); 
           
               
         },  
         error: function (request , msg , error) {  
             console.log('Can not post');
-            GetDonors(); 
+            GetRecipient(); 
         }  
     }); 
 

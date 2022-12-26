@@ -1,6 +1,5 @@
 package com.example.API_BloodBank.DTO;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class userDTO {
-    private Long id;
-    private String username;
+public class MobileDTO {
 
-    private String status;
-    private String rol;
+    private String background;
+    private String icon;
+    private String name;
+    private Long total;
 }

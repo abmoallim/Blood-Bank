@@ -1,6 +1,5 @@
 package com.example.bloodbank;
 
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -22,7 +21,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bloodbank.urlController.urlModel;
 
@@ -33,14 +31,11 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-public class UpdateDonorActivity extends AppCompatActivity {
+public class UpdateRecipientActivity extends AppCompatActivity {
 
-    EditText et_name, et_phone, et_date, et_weight;
+    EditText et_name, et_phone, et_date;
     Spinner sp_state, sp_blood;
     Button btn_update;
     final Calendar myCalendar= Calendar.getInstance();
@@ -51,19 +46,18 @@ public class UpdateDonorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_donor);
+        setContentView(R.layout.activity_update_recipient);
         context = this;
 
         et_name = findViewById(R.id.etname);
         et_phone = findViewById(R.id.etphone);
         et_date = findViewById(R.id.dpdop);
         sp_blood = findViewById(R.id.blood);
-        et_weight = findViewById(R.id.etweight);
         sp_state = findViewById(R.id.state);
 
-        // Call getDonorData method
-        String donor_id = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-        getDonorData(donor_id);
+        // Call getRecipientData method
+        String recipient_id = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        getRecipientData(recipient_id);
 
 
         btn_update = findViewById(R.id.update);
@@ -94,24 +88,15 @@ public class UpdateDonorActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Weight validation
-                EditText etWeight = findViewById(R.id.etweight);
-
-                if (etWeight.getText().toString().isEmpty()) {
-                    etWeight.setError("this field is required!");
-                    return;
-                }
-
-                // call UpdateDonor method and pass its arguments
+                // call UpdateRecipient method and pass its arguments
                 try {
-                    UpdateDonor(
-                            donor_id,
+                    UpdateRecipient(
+                            recipient_id,
                             ((State) sp_state.getSelectedItem()).getId(),
                             ((State) sp_blood.getSelectedItem()).getId(),
                             et_name.getText().toString(),
                             et_phone.getText().toString(),
-                            et_date.getText().toString(),
-                            et_weight.getText().toString()
+                            et_date.getText().toString()
                     );
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -141,12 +126,10 @@ public class UpdateDonorActivity extends AppCompatActivity {
     }
 
 
-    // Donor update logic
-    private void UpdateDonor(String donor_id, String state_id, String blood_id, String name, String phone, String dop, String weight) throws JSONException {
+    // Recipient update logic
+    private void UpdateRecipient(String recipient_id, String state_id, String blood_id, String name, String phone, String dop) throws JSONException {
 
         RequestQueue queue = Volley.newRequestQueue(context);
-
-        String url = urlModel.update_donor + donor_id + "/";
 
         JSONObject state_json_data = new JSONObject();
         state_json_data.put("id", Integer.parseInt(state_id));
@@ -156,24 +139,22 @@ public class UpdateDonorActivity extends AppCompatActivity {
 
         // request parameters
         JSONObject params = new JSONObject();
-        params.put("id", Integer.parseInt(donor_id));
+        params.put("id", Integer.parseInt(recipient_id));
         params.put("name", name);
         params.put("phone", phone);
         params.put("brithDate", dop);
         params.put("username", "Hersi");
         params.put("status", "Active");
-        params.put("weight", Integer.parseInt(weight));
         params.put("state", state_json_data);
         params.put("bloodType", blood_json_data);
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, urlModel.update_donor, params, response -> {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, urlModel.update_recipient, params, response -> {
             Toast.makeText(context, "Client: sent data to the API", Toast.LENGTH_SHORT).show();
-
-            if(response.length() == 10){
-                Intent donors_intent = new Intent();
-                donors_intent.setClass(context, DonorsActivity.class);
+            if(response.length() == 9){
+                Intent recipients_intent = new Intent();
+                recipients_intent.setClass(context, RecipientsActivity.class);
                 Toast.makeText(context, "Successfully updated", Toast.LENGTH_SHORT).show();
-                startActivity(donors_intent);
+                startActivity(recipients_intent);
 
             }else{
                 Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
@@ -186,24 +167,23 @@ public class UpdateDonorActivity extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void getDonorData(String donor_id){
+    private void getRecipientData(String recipient_id){
 
         // EditText data request
-        String url = urlModel.update_donor + donor_id;
+        String url = urlModel.update_recipient + recipient_id;
         @SuppressLint("LongLogTag")
         JsonObjectRequest et_request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>(){
             @Override
             public void onResponse(JSONObject response) {
                 JSONObject data = response;
                 try {
-                    JSONObject donor_blood = new JSONObject(response.getString("bloodType"));
-                    JSONObject donor_state = new JSONObject(response.getString("state"));
-                    blood_name = donor_blood.getString("bloodName");
-                    state_name = donor_state.getString("stateName");
+                    JSONObject recipient_blood = new JSONObject(response.getString("bloodType"));
+                    JSONObject recipient_state = new JSONObject(response.getString("state"));
+                    blood_name = recipient_blood.getString("bloodName");
+                    state_name = recipient_state.getString("stateName");
                     et_name.setText(response.getString("name"));
                     et_phone.setText(response.getString("phone"));
                     et_date.setText(response.getString("brithDate"));
-                    et_weight.setText(response.getString("weight"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

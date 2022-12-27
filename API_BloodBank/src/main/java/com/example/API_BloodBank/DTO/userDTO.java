@@ -14,4 +14,5 @@ public class userDTO {
 
     private String status;
     private String rol;
+    private int response_code;
 }

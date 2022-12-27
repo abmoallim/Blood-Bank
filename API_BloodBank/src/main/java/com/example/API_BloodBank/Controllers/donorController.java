@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/donor")
-public class donorController {
+public class  donorController {
 
     @Autowired
     donorService _service;

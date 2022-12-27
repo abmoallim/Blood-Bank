@@ -47,6 +47,7 @@ public class userService {
                 dtoArray.setUsername(user.getUsername());
                 dtoArray.setStatus(user.getStatus());
                 dtoArray.setRol(user.getRole().getRole_name());
+                dtoArray.setResponse_code(200);
 
                 dtos[i] = dtoArray;
             }

@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Update Donor"
+        android:text="New Recipient"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="30sp"
@@ -80,28 +80,13 @@
             android:textColorHint="#FFF"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
-        <EditText
-            android:id="@+id/etweight"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="    Weight"
-            android:drawableLeft="@drawable/ic_baseline_scale_24"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:textColor="#fff"
-            android:importantForAutofill="no"
-            android:textColorHint="#fff"
-            />
+
         <Spinner
             android:id="@+id/blood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"/>
-
         <Spinner
             android:id="@+id/state"
             android:layout_width="match_parent"
@@ -111,10 +96,8 @@
 
     </LinearLayout>
 
-
-
     <Button
-        android:id="@+id/update"
+        android:id="@+id/save"
         android:layout_width="match_parent"
         android:background="@drawable/circlebutton"
         android:textColor="@color/colorWhite"
@@ -124,7 +107,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Update"
+        android:text="Save"
         android:textSize="30sp"
         />
 

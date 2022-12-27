@@ -65,13 +65,12 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 //        pieChart = findViewById(R.id.piechart);
 
         tv_total_hospitals = findViewById(R.id.total_hospitals);
-
-        tv_total_donors = findViewById(R.id.total_donors);
-
-        tv_total_recipients = findViewById(R.id.total_recipients);
-        tv_total_recipients.setOnClickListener(this);
-
         tv_total_blood = findViewById(R.id.total_blood);
+        tv_total_donors = findViewById(R.id.total_donors);
+        tv_total_recipients = findViewById(id.total_recipients);
+
+        iv_recipients = findViewById(id.recipients);
+        iv_recipients.setOnClickListener(this);
 
         iv_donors = findViewById(id.donors);
         iv_donors.setOnClickListener(this);
@@ -109,11 +108,15 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             public void onResponse(JSONArray response) {
 //                System.out.println(response);
                 try {
-                    JSONObject data = response.getJSONObject(0);
-                    tv_total_hospitals.setText(data.getString("total_hospitals"));
-                    tv_total_donors.setText(data.getString("total_donors"));
-                    tv_total_recipients.setText(data.getString("total_recipients"));
-                    tv_total_blood.setText(data.getString("total_blood"));
+                    JSONObject hospital_data = response.getJSONObject(0);
+                    JSONObject donor_data = response.getJSONObject(1);
+                    JSONObject recipient_data = response.getJSONObject(2);
+                    JSONObject blood_data = response.getJSONObject(3);
+//                    System.out.println(donor_data);
+                    tv_total_hospitals.setText(hospital_data.getString("total"));
+                    tv_total_donors.setText(donor_data.getString("total"));
+                    tv_total_recipients.setText(recipient_data.getString("total"));
+                    tv_total_blood.setText(blood_data.getString("total"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -133,12 +136,12 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case id.donors:
-                Intent register_intent = new Intent(DashboardActivity.this, DonorsActivity.class);
-                startActivity(register_intent);
+                Intent donors_intent = new Intent(DashboardActivity.this, DonorsActivity.class);
+                startActivity(donors_intent);
                 break;
-            case id.total_recipients:
-                Intent login_intent = new Intent(DashboardActivity.this, DonationActivity.class);
-                startActivity(login_intent);
+            case id.recipients:
+                Intent recipients_intent = new Intent(DashboardActivity.this, RecipientsActivity.class);
+                startActivity(recipients_intent);
                 break;
         }
     }

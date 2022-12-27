@@ -28,7 +28,7 @@ public class userController {
 
     @GetMapping("/login/{username}/{password}")
     public List<userDTO> byUserName(@PathVariable String username, @PathVariable String password){
-        return _service.getUserByUsername(username,password);
+        return _service.getUserByUsername(username, password);
     }
 
 

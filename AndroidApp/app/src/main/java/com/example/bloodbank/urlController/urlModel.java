@@ -6,9 +6,9 @@ public class urlModel {
     private static final String port = "3030";
 
 
-    public final static String get_hospital_numbers_url = "http://" + domain + ":" + port + "/api/hospital/hospitals/";
+    public final static String donation_url = "http://" + domain + ":" + port + "/api/donation/";
     public final static String dashboard_data_url = "http://" + domain + ":" + port + "/Dashboard/";
-    public final static String hospitals_url = "http://" + domain + ":" + port + "/Hospitals";
+    public final static String hospitals_url = "http://" + domain + ":" + port + "/api/hospital/";
     public final static String donors_url = "http://" + domain + ":" + port + "/api/donor/";
     public final static String recipients_url = "http://" + domain + ":" + port + "/api/recipient/";
     public final static String login_url = "http://" + domain + ":" + port + "/api/user/login/";
@@ -20,6 +20,8 @@ public class urlModel {
     public final static String update_donor = "http://" + domain + ":" + port + "/api/donor/";
     public final static String update_recipient = "http://" + domain + ":" + port + "/api/recipient/";
     public final static String blood_url = "http://" + domain + ":" + port + "/api/blood/";
+    public final static String result_url = "http://" + domain + ":" + port + "/api/result/";
+
 
 
 }

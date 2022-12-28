@@ -11,25 +11,23 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="80dp"
-
+        android:layout_marginBottom="40dp"
         android:text="Blood Donation"
         android:textAlignment="center"
         android:textColor="#fff"
-        android:textSize="30sp"
-        />
+        android:textSize="30sp" />
 
     <Spinner
         android:id="@+id/donor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
+        android:spinnerMode="dropdown" />
 
     <Spinner
         android:id="@+id/hospital"

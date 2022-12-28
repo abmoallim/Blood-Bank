@@ -67,7 +67,6 @@ public class RegisterActivity extends AppCompatActivity {
         JsonArrayRequest states_request = new JsonArrayRequest(Request.Method.GET, urlModel.states_url, null, new Response.Listener<JSONArray>(){
             @Override
             public void onResponse(JSONArray response) {
-                // System.out.println(response);
 
                 ArrayList<State> states = new ArrayList<>();
                 for(int i = 0; i < response.length(); i++){
@@ -86,14 +85,12 @@ public class RegisterActivity extends AppCompatActivity {
         }, error -> Log.i("Error Message ------- ------- ------- ", error.getMessage()));
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-
         requestQueue.add(states_request);
 
         @SuppressLint("LongLogTag")
         JsonArrayRequest blood_request = new JsonArrayRequest(Request.Method.GET, urlModel.blood_url, null, new Response.Listener<JSONArray>(){
             @Override
             public void onResponse(JSONArray response) {
-                 System.out.println(response);
 
                 ArrayList<State> bloods = new ArrayList<>();
                 for(int i = 0; i < response.length(); i++){
@@ -141,10 +138,8 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-
                 // Weight validation
                 EditText etWeight = findViewById(R.id.etweight);
-
                 if (etWeight.getText().toString().isEmpty()) {
                     etWeight.setError("this field is required!");
                     return;
@@ -153,12 +148,12 @@ public class RegisterActivity extends AppCompatActivity {
                 // call RegisterDonor method and pass its arguments
                 try {
                     RegisterDonor(
-                            et_name.getText().toString(),
-                            et_phone.getText().toString(),
-                            et_date.getText().toString(),
-                            ((State) sp_blood.getSelectedItem()).getId(),
-                            et_weight.getText().toString(),
-                            ((State) sp_state.getSelectedItem()).getId()
+                        et_name.getText().toString(),
+                        et_phone.getText().toString(),
+                        et_date.getText().toString(),
+                        ((State) sp_blood.getSelectedItem()).getId(),
+                        et_weight.getText().toString(),
+                        ((State) sp_state.getSelectedItem()).getId()
                     );
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -198,21 +193,16 @@ public class RegisterActivity extends AppCompatActivity {
         JSONObject blood_data = new JSONObject();
         blood_data.put("id", Integer.parseInt(blood_id));
 
+        // request parameters
         JSONObject params = new JSONObject();
         params.put("name", name);
         params.put("phone", phone);
         params.put("brithDate", dop);
-        // params.put("address", address);
         params.put("weight", Integer.parseInt(weight));
         params.put("state", state_data);
         params.put("bloodType", blood_data);
-//        System.out.println(params);
-
-//        JSONObject parameters = new JSONObject(params);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, urlModel.register_url, params, response -> {
-            System.out.println(response);
-            System.out.println(response.length());
             Toast.makeText(context, "Client: sent data to the API", Toast.LENGTH_SHORT).show();
             if(response.length() == 10){
                     Intent register_intent = new Intent();

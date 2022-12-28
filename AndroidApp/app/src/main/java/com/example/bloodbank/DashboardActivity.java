@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ import org.json.JSONObject;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener{
 
-    ImageView iv_donors, iv_recipients;
+    ImageView iv_donors, iv_recipients, tv_donation;
     RecyclerView rv_cards_holder;
     RecyclerView.Adapter dashboardAdapter;
 
@@ -44,7 +45,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     PieChart pieChart;
 
 //    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +74,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         iv_donors = findViewById(id.donors);
         iv_donors.setOnClickListener(this);
+
+        tv_donation = findViewById(id.donation);
+        tv_donation.setOnClickListener(this);
 
 //        GridLayoutManager gridLayout = new GridLayoutManager(getApplicationContext(), 2);
 //        rv_cards_holder.setLayoutManager(gridLayout);
@@ -142,6 +145,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             case id.recipients:
                 Intent recipients_intent = new Intent(DashboardActivity.this, RecipientsActivity.class);
                 startActivity(recipients_intent);
+                break;
+            case id.donation:
+                Intent donation_intent = new Intent(DashboardActivity.this, DonationActivity.class);
+                startActivity(donation_intent);
                 break;
         }
     }

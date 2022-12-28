@@ -198,12 +198,12 @@ public class UpdateRecipientActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
 
                 ArrayList<State> bloods = new ArrayList<State>();
-                ArrayList<String> arr = new ArrayList<String>();
+                ArrayList<String> blood_arr = new ArrayList<String>();
                 for(int i = 0; i < response.length(); i++){
                     try {
                         JSONObject blood = response.getJSONObject(i);
                         bloods.add(new State(blood.getString("id"), blood.getString("bloodName")));
-                        arr.add(blood.getString("bloodName"));
+                        blood_arr.add(blood.getString("bloodName"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -212,8 +212,8 @@ public class UpdateRecipientActivity extends AppCompatActivity {
                 //fill data to the spinner
                 ArrayAdapter<State> adapter = new ArrayAdapter<State>(context, android.R.layout.simple_spinner_dropdown_item, bloods);
                 sp_blood.setAdapter(adapter);
-                int index = arr.indexOf(blood_name);
-                arr.clear();
+                int index = blood_arr.indexOf(blood_name);
+                blood_arr.clear();
                 System.out.println(index);
                 sp_blood.setSelection(index);
             }
@@ -226,13 +226,13 @@ public class UpdateRecipientActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
 
-                ArrayList<String> arr = new ArrayList<String>();
+                ArrayList<String> state_arr = new ArrayList<String>();
                 ArrayList<State> states = new ArrayList<>();
                 for(int i = 0; i < response.length(); i++){
                     try {
                         JSONObject state = response.getJSONObject(i);
                         states.add(new State(state.getString("id"), state.getString("stateName")));
-                        arr.add(state.getString("stateName"));
+                        state_arr.add(state.getString("stateName"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -241,8 +241,8 @@ public class UpdateRecipientActivity extends AppCompatActivity {
                 //fill data in spinner
                 ArrayAdapter<State> adapter = new ArrayAdapter<State>(context, android.R.layout.simple_spinner_dropdown_item, states);
                 sp_state.setAdapter(adapter);
-                int index = arr.indexOf(state_name);
-                arr.clear();
+                int index = state_arr.indexOf(state_name);
+                state_arr.clear();
                 System.out.println(index);
                 sp_state.setSelection(index);
             }

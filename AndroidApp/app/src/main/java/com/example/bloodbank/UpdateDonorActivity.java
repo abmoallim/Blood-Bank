@@ -67,55 +67,51 @@ public class UpdateDonorActivity extends AppCompatActivity {
 
 
         btn_update = findViewById(R.id.update);
-        btn_update.setOnClickListener(new View.OnClickListener() {
+        btn_update.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v) {
+            // Name validation
+            EditText etName = findViewById(R.id.etname);
+            if (etName.getText().toString().isEmpty()) {
+                etName.setError("this field is required!");
+                return;
+            }
+            if (etName.getText().toString().length() < 3) {
+                etName.setError("Name field  must be 3 or above characters");
+                return;
+            }
 
-                // Name validation
-                EditText etName = findViewById(R.id.etname);
-                if (etName.getText().toString().isEmpty()) {
-                    etName.setError("this field is required!");
-                    return;
-                }
-                if (etName.getText().toString().length() < 3) {
-                    etName.setError("Name field  must be 3 or above characters");
-                    return;
-                }
+            // Phone validation
+            EditText etPhone = findViewById(R.id.etphone);
+            if (etPhone.getText().toString().isEmpty()) {
+                etPhone.setError("this field is required!");
+                return;
+            }
+            if (etPhone.getText().toString().length() < 9 || etPhone.getText().toString().length() > 9) {
+                etPhone.setError("Phone field  must be 9 characters long");
+                return;
+            }
 
-                // Phone validation
-                EditText etPhone = findViewById(R.id.etphone);
-                if (etPhone.getText().toString().isEmpty()) {
-                    etPhone.setError("this field is required!");
-                    return;
-                }
-                if (etPhone.getText().toString().length() < 9 || etPhone.getText().toString().length() > 9) {
-                    etPhone.setError("Phone field  must be 9 characters long");
-                    return;
-                }
+            // Weight validation
+            EditText etWeight = findViewById(R.id.etweight);
 
-                // Weight validation
-                EditText etWeight = findViewById(R.id.etweight);
+            if (etWeight.getText().toString().isEmpty()) {
+                etWeight.setError("this field is required!");
+                return;
+            }
 
-                if (etWeight.getText().toString().isEmpty()) {
-                    etWeight.setError("this field is required!");
-                    return;
-                }
-
-                // call UpdateDonor method and pass its arguments
-                try {
-                    UpdateDonor(
-                            donor_id,
-                            ((State) sp_state.getSelectedItem()).getId(),
-                            ((State) sp_blood.getSelectedItem()).getId(),
-                            et_name.getText().toString(),
-                            et_phone.getText().toString(),
-                            et_date.getText().toString(),
-                            et_weight.getText().toString()
-                    );
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            // call UpdateDonor method and pass its arguments
+            try {
+                UpdateDonor(
+                        donor_id,
+                        ((State) sp_state.getSelectedItem()).getId(),
+                        ((State) sp_blood.getSelectedItem()).getId(),
+                        et_name.getText().toString(),
+                        et_phone.getText().toString(),
+                        et_date.getText().toString(),
+                        et_weight.getText().toString()
+                );
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         });
 
@@ -218,12 +214,12 @@ public class UpdateDonorActivity extends AppCompatActivity {
             public void onResponse(JSONArray response) {
 
                 ArrayList<State> bloods = new ArrayList<State>();
-                ArrayList<String> arr = new ArrayList<String>();
+                ArrayList<String> blood_arr = new ArrayList<String>();
                 for(int i = 0; i < response.length(); i++){
                     try {
                         JSONObject blood = response.getJSONObject(i);
                         bloods.add(new State(blood.getString("id"), blood.getString("bloodName")));
-                        arr.add(blood.getString("bloodName"));
+                        blood_arr.add(blood.getString("bloodName"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -232,8 +228,8 @@ public class UpdateDonorActivity extends AppCompatActivity {
                 //fill data to the spinner
                 ArrayAdapter<State> adapter = new ArrayAdapter<State>(context, android.R.layout.simple_spinner_dropdown_item, bloods);
                 sp_blood.setAdapter(adapter);
-                int index = arr.indexOf(blood_name);
-                arr.clear();
+                int index = blood_arr.indexOf(blood_name);
+                blood_arr.clear();
                 System.out.println(index);
                 sp_blood.setSelection(index);
             }
@@ -246,13 +242,13 @@ public class UpdateDonorActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
 
-                ArrayList<String> arr = new ArrayList<String>();
+                ArrayList<String> state_arr = new ArrayList<String>();
                 ArrayList<State> states = new ArrayList<>();
                 for(int i = 0; i < response.length(); i++){
                     try {
                         JSONObject state = response.getJSONObject(i);
                         states.add(new State(state.getString("id"), state.getString("stateName")));
-                        arr.add(state.getString("stateName"));
+                        state_arr.add(state.getString("stateName"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -261,8 +257,8 @@ public class UpdateDonorActivity extends AppCompatActivity {
                 //fill data in spinner
                 ArrayAdapter<State> adapter = new ArrayAdapter<State>(context, android.R.layout.simple_spinner_dropdown_item, states);
                 sp_state.setAdapter(adapter);
-                int index = arr.indexOf(state_name);
-                arr.clear();
+                int index = state_arr.indexOf(state_name);
+                state_arr.clear();
                 System.out.println(index);
                 sp_state.setSelection(index);
             }

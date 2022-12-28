@@ -92,14 +92,12 @@ public class DonorsActivity extends AppCompatActivity implements View.OnClickLis
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, urlModel.donors_url, null, new Response.Listener<JSONArray>(){
             @Override
             public void onResponse(JSONArray response) {
-//                System.out.println(response);
 
                 for(int i = 0; i < response.length(); i++){
                     try {
                         JSONObject donor = response.getJSONObject(i);
                         TableRow  row = new TableRow(context);
                         row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.WRAP_CONTENT));
-                        JSONObject donor_blood = new JSONObject(donor.getString("bloodType"));
 
                         // get donor age by using his/her birthdate
                         Date current_date = Calendar.getInstance().getTime();
@@ -110,16 +108,15 @@ public class DonorsActivity extends AppCompatActivity implements View.OnClickLis
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
+
                         long age = ((Math.abs(current_date.getTime() - date.getTime())/(24 * 60 * 60 * 1000))/365);
-
-
+                        JSONObject donor_blood = new JSONObject(donor.getString("bloodType"));
                         String[] blodyText = {String.valueOf(i+1), donor.getString("name"), donor.getString("phone"), String.valueOf(age), donor.getString("weight"), donor_blood.getString("bloodName")};
                         int counter = 0;
+
                         for(String text:blodyText) {
                             counter ++;
-
                             final TextView tv_td = new TextView(context);
-
                             tv_td.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                             tv_td.setTextSize(17);
                             tv_td.setGravity(Gravity.CENTER);
@@ -142,15 +139,10 @@ public class DonorsActivity extends AppCompatActivity implements View.OnClickLis
                                     @Override
                                     public void onClick(View v) {
                                         try {
-                                            String donor_id = donor.getString("id");
-//                                            Toast.makeText(context,  String.valueOf(donor_id), Toast.LENGTH_LONG).show();
                                             Intent update_donor_intent = new Intent(context, UpdateDonorActivity.class);
-//                                            update_donor_intent.putExtra("id", donor.getString("id"));
                                             update_donor_intent.putExtra(Intent.EXTRA_TEXT, donor.getString("id"));
-//                                            System.out.println(update_donor_intent.getStringExtra(Intent.EXTRA_TEXT));
                                             startActivity(update_donor_intent);
                                         } catch (JSONException e) {
-                                            System.out.println("------- -------- --------- -------");
                                             e.printStackTrace();
                                         }
                                     }
@@ -190,7 +182,6 @@ public class DonorsActivity extends AppCompatActivity implements View.OnClickLis
         }, error -> Log.i("Error Message ------- ------- ------- ", error.getMessage()));
 
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-
         requestQueue.add(request);
 
 
@@ -203,7 +194,7 @@ public class DonorsActivity extends AppCompatActivity implements View.OnClickLis
         builder.setTitle("Alert!!");
         builder.setCancelable(false);
 
-        // call donor PUT api if user clicks yes
+        // call donor DELETE api if user clicks yes
         builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
             String url = urlModel.delete_donor + donor_id;
             RequestQueue queue = Volley.newRequestQueue(context);
@@ -217,14 +208,11 @@ public class DonorsActivity extends AppCompatActivity implements View.OnClickLis
                         String response_message = response.getString("response_message");
                         int response_code = Integer.parseInt(response.getString("response_code"));
 
+                        finish();
+                        startActivity(getIntent());
                         if(response_code == 200){
-                            finish();
-                            startActivity(getIntent());
                             Toast.makeText(context, "Successfully deleted", Toast.LENGTH_SHORT).show();
-
                         }else{
-                            finish();
-                            startActivity(getIntent());
                             Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
                         }
 
@@ -236,17 +224,7 @@ public class DonorsActivity extends AppCompatActivity implements View.OnClickLis
                 // method to handle errors.
                 System.out.println(error);
                 Toast.makeText(context, "Failed to get response: " + error, Toast.LENGTH_SHORT).show();
-            }) {
-                @Override
-                protected Map<String, String> getParams() {
-
-                    Map<String, String> params = new HashMap<String, String>();
-
-                    params.put("id", String.valueOf(donor_id));
-
-                    return params;
-                }
-            };
+            });
             // a json object request.
             queue.add(request);
         });

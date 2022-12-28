@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Update Donor"
+        android:text="Update Recipient"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="30sp"

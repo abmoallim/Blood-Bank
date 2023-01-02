@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2022 at 03:39 PM
+-- Generation Time: Dec 28, 2022 at 03:02 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -37,8 +37,7 @@ CREATE TABLE `blood_type` (
 --
 
 INSERT INTO `blood_type` (`id`, `blood_name`) VALUES
-(1, 'A+'),
-(2, 'A-');
+(1, 'A+');
 
 -- --------------------------------------------------------
 
@@ -61,8 +60,8 @@ CREATE TABLE `donation` (
 INSERT INTO `donation` (`id`, `date`, `quantity`, `hospital_id`, `result_id`) VALUES
 (1, '2022-12-07', 500, 1, 1),
 (2, '2022-12-07', 500, 1, 1),
-(3, '2022-12-07', 300, 2, 2),
-(4, '2022-12-13', 450, 2, 1);
+(4, '2022-12-13', 450, 2, 1),
+(5, '2022-12-14', 1000, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -90,8 +89,7 @@ CREATE TABLE `donor` (
 INSERT INTO `donor` (`id`, `status`, `weight`, `brith_date`, `name`, `password`, `phone`, `username`, `blood_id`, `state_id`) VALUES
 (1, 'Pendding', '63 KG KG KG', '2003-10-06', 'Farax ali', '123', '061727121', 'farah', 1, 1),
 (2, 'Active', '50 KG', '2002-12-09', 'nuurein', '123', '5645645', 'nuur', 1, 1),
-(3, 'In active', '53 KG', '1997-02-18', 'Bosteya Elmi', '123', '0617282772', 'Bosteya', 2, 1),
-(4, 'Active', '57', '2001-06-20', 'Mohamed', '123', '23263424', 'moha', 2, 1);
+(5, 'Pendding', '57 KG KG', '2022-12-13', 'Mohamed', '123', '23263424', 'moha', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -139,8 +137,7 @@ CREATE TABLE `recipient` (
 INSERT INTO `recipient` (`id`, `status`, `brith_date`, `name`, `password`, `phone`, `username`, `blood_id`, `state_id`) VALUES
 (1, 'Active', '1996-12-04', 'Jamac', '1234', '012810311', 'jama', 1, 1),
 (2, 'Active', '1988-08-11', 'jacfar', '123', '23232342', 'jacfar', 1, 2),
-(3, 'Pendding', '2000-02-07', 'farhiya', '123', '2326213123', 'far', 1, 2),
-(4, 'In active', '2001-06-05', 'Mohamed jama', '123', '2326313231', 'moha', 2, 1);
+(3, 'Pendding', '2000-02-07', 'farhiya', '123', '2326213123', 'far', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -181,8 +178,11 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `role_name`) VALUES
-(1, 'Admin'),
-(2, 'Accountant');
+(1, 'Admins'),
+(2, 'Accountant'),
+(3, 'HR'),
+(4, 'CTO'),
+(5, 'CEO');
 
 -- --------------------------------------------------------
 
@@ -224,7 +224,6 @@ CREATE TABLE `test_result` (
 
 INSERT INTO `test_result` (`id`, `date`, `description`, `is_healthy`, `donor_id`, `hospital_id`) VALUES
 (1, '2022-12-01', 'He is healthy ', 1, 1, 1),
-(2, '2022-12-01', 'He/she is healthy ', 1, 3, 2),
 (3, '2022-12-01', 'He/she is healthy ', 0, 2, 1);
 
 -- --------------------------------------------------------
@@ -248,7 +247,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `status`, `username`, `role_id`) VALUES
 (1, 'abdi@gmail.com', '123uct', 'Active', 'abdi', 1),
-(2, 'Nuur@gmail.com', '123', 'Active', 'nuur', 2);
+(6, 'by@bytesotech.com', '123', 'In Active', 'moallim', 1);
 
 --
 -- Indexes for dumped tables
@@ -339,13 +338,13 @@ ALTER TABLE `blood_type`
 -- AUTO_INCREMENT for table `donation`
 --
 ALTER TABLE `donation`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `donor`
 --
 ALTER TABLE `donor`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `hospital`
@@ -369,7 +368,7 @@ ALTER TABLE `records`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `state`
@@ -387,7 +386,7 @@ ALTER TABLE `test_result`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
